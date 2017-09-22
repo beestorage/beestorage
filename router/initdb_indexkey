@@ -1,0 +1,11 @@
+use picture
+sh.addShard( "shard1:27020")
+sh.addShard( "shard2:27020")
+sh.addShard( "shard3:27020")
+db.imagefile.createIndex({"file_id": 1 })
+db.fs.files.createIndex({"filename":1,"uploadDate":1})
+db.fs.chunks.createIndex({"files_id":1,"n":1})
+sh.enableSharding("picture")
+sh.shardCollection("picture.imagefile",file_path : { "file_id": 1 } )
+sh.shardCollection("picture.fs.files" ,file_path : { "_id": 1 } )
+sh.shardCollection("picture.fs.chunks", key : { files_id : 1 , n : 1 } )
