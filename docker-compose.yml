@@ -3,8 +3,15 @@ services:
   config1:
     image: mongo:3.4
     deploy:
-      mode: replicated
-      replicas: 2
+      mode: global
+    command: mongod --configsvr --dbpath /data/configdb --port 27019
+    networks:
+      -mongo1-network
+
+  config2:
+    image: mongo:3.4
+    deploy:
+      mode: global
     command: mongod --configsvr --dbpath /data/configdb --port 27019
     networks:
       -mongo1-network
@@ -35,7 +42,9 @@ services:
     deploy:
       mode: replicated
       replicas: 2
-    command: mongos --configdb config1:27019 --port 27017
+    command: mongos --configdb config1:27019 config2:27019 --port 27081
+    ports:
+    - "27081:27081"
     links:
       -config1
       -shard1
@@ -43,17 +52,6 @@ services:
       -shard3
     networks:
       -mongo1-network
-
-
-
-
-
-
-
-
-
-volumes:
-  logvolume01: {}
 
 networks:
   mongo1-network
