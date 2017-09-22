@@ -1,58 +1,43 @@
 version: '3'
 services:
+
+  thumbor:
+    build: ./ThumborMongoDocker
+    environment:
+      - MONGO_STORAGE_SERVER_HOST=router1
+      - MONGO_STORAGE_SERVER_PORT=27081
+    ports:
+    - "8000:8000"
+    depends_on:
+      - router1
+
+  router1:
+    build: ./router
+    ports:
+    - "27081:27081"
+    depends_on:
+      - config1
+      - config2
+      - shard1
+      - shard2
+      - shard3
+
   config1:
     image: mongo:3.4
-    deploy:
-      mode: global
-    command: mongod --configsvr --dbpath /data/configdb --port 27019
-    networks:
-      -mongo1-network
+    command: mongod --configsvr --replSet configserver --port 27019
 
   config2:
     image: mongo:3.4
-    deploy:
-      mode: global
-    command: mongod --configsvr --dbpath /data/configdb --port 27019
-    networks:
-      -mongo1-network
+    command: mongod --configsvr --replSet configserver --port 27019
 
   shard1:
     image: mongo:3.4
-    deploy:
-      mode: global
-    networks:
-      -mongo1-network
+    command: mongod --shardsvr --port 27020
 
   shard2:
     image: mongo:3.4
-    deploy:
-      mode: global
-    networks:
-      -mongo1-network
+    command: mongod --shardsvr --port 27020
 
   shard3:
     image: mongo:3.4
-    deploy:
-      mode: global
-    networks:
-      -mongo1-network
-
-  router1:
-    image: mongo:3.4
-    deploy:
-      mode: replicated
-      replicas: 2
-    command: mongos --configdb config1:27019 config2:27019 --port 27081
-    ports:
-    - "27081:27081"
-    links:
-      -config1
-      -shard1
-      -shard2
-      -shard3
-    networks:
-      -mongo1-network
-
-networks:
-  mongo1-network
-    driver: bridge
+    command: mongod --shardsvr --port 27020
