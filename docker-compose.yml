@@ -1,15 +1,60 @@
 version: '3'
 services:
-  web:
-    build: .
-    ports:
-    - "5000:5000"
-    volumes:
-    - .:/code
-    - logvolume01:/var/log
+  config1:
+    image: mongo:3.4
+    deploy:
+      mode: replicated
+      replicas: 2
+    command: mongod --configsvr --dbpath /data/configdb --port 27019
+    networks:
+      -mongo1-network
+
+  shard1:
+    image: mongo:3.4
+    deploy:
+      mode: global
+    networks:
+      -mongo1-network
+
+  shard2:
+    image: mongo:3.4
+    deploy:
+      mode: global
+    networks:
+      -mongo1-network
+
+  shard3:
+    image: mongo:3.4
+    deploy:
+      mode: global
+    networks:
+      -mongo1-network
+
+  router1:
+    image: mongo:3.4
+    deploy:
+      mode: replicated
+      replicas: 2
+    command: mongos --configdb config1:27019 --port 27017
     links:
-    - redis
-  redis:
-    image: redis
+      -config1
+      -shard1
+      -shard2
+      -shard3
+    networks:
+      -mongo1-network
+
+
+
+
+
+
+
+
+
 volumes:
   logvolume01: {}
+
+networks:
+  mongo1-network
+    driver: bridge
