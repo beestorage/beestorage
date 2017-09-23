@@ -1,15 +1,66 @@
 version: '3'
 services:
-  web:
-    build: .
+
+  thumbor:
+    image: lionants02/thumbormongodocker
+    environment:
+      - MONGO_STORAGE_SERVER_HOST=router1
+      - MONGO_STORAGE_SERVER_PORT=27081
+      - MONGO_STORAGE_SERVER_DB=picture
+      - MONGO_STORAGE_SERVER_COLLECTION=imagefile
+      - UPLOAD_ENABLED=True
+      - UPLOAD_PUT_ALLOWED=True
     ports:
-    - "5000:5000"
-    volumes:
-    - .:/code
-    - logvolume01:/var/log
-    links:
-    - redis
-  redis:
-    image: redis
-volumes:
-  logvolume01: {}
+    - "8000:8000"
+    depends_on:
+      - router1
+
+  router1:
+    build: ./router
+    ports:
+    - "27081:27081"
+    depends_on:
+      - config1
+      - config2
+      - shard1n1
+      - shard1n2
+      - shard2n1
+      - shard2n2
+
+  config1:
+    image: mongo:3.4
+    restart: on-failure
+    command: mongod --configsvr --replSet configserver --port 27019
+
+  config2:
+    image: mongo:3.4
+    restart: on-failure
+    command: mongod --configsvr --replSet configserver --port 27019
+
+  shard1n1:
+    image: mongo:3.4
+    restart: on-failure
+    ports:
+      - "8001:27020"
+    command: mongod --noprealloc --replSet dataGroup1 --shardsvr --port 27020
+
+  shard1n2:
+    image: mongo:3.4
+    restart: on-failure
+    ports:
+      - "8002:27020"
+    command: mongod --noprealloc --replSet dataGroup1 --shardsvr --port 27020
+
+  shard2n1:
+    image: mongo:3.4
+    restart: on-failure
+    ports:
+      - "8003:27020"
+    command: mongod --noprealloc --replSet dataGroup2 --shardsvr --port 27020
+
+  shard2n2:
+    image: mongo:3.4
+    restart: on-failure
+    ports:
+      - "8004:27020"
+    command: mongod --noprealloc --replSet dataGroup2 --shardsvr --port 27020
