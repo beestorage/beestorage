@@ -33,12 +33,12 @@ services:
   config1:
     image: mongo:3.4
     restart: on-failure
-    command: mongod --configsvr --replSet configserver --storageEngine inMemory --port 27019
+    command: mongod --configsvr --smallfiles --replSet configserver --storageEngine inMemory --inMemorySizeGB 0.5 --port 27019
 
   config2:
     image: mongo:3.4
     restart: on-failure
-    command: mongod --configsvr --replSet configserver --storageEngine inMemory --port 27019
+    command: mongod --configsvr --smallfiles --replSet configserver --storageEngine inMemory --inMemorySizeGB 0.5 --port 27019
 
   shard1n1:
     image: mongo:3.4
