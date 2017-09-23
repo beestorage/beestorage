@@ -10,6 +10,8 @@ git config --global core.eol lf
 
 ## How to basic use
 ### https://youtu.be/HVWybJD48C8
+[![IMAGE ALT TEXT](http://img.youtube.com/vi/HVWybJD48C8/0.jpg)](https://youtu.be/HVWybJD48C8 "How to ... ")
+
 
 ```
   router1   localhost:27081
@@ -18,3 +20,7 @@ git config --global core.eol lf
   shard2n1  localhost:8003
   shard2n2  localhost:8004
 ```
+
+[id]: https://github.com/APSL/docker-thumbor "Base Thumbor Docker"
+
+[id]: https://hub.docker.com/r/lionants02/thumbormongodocker/ "my Thumbor edit compatible Mongo GridFS"
