@@ -36,12 +36,18 @@ services:
 
   shard1:
     image: mongo:3.4
+    ports:
+      - "8001:27020"
     command: mongod --shardsvr --port 27020
 
   shard2:
     image: mongo:3.4
+    ports:
+      - "8002:27020"
     command: mongod --shardsvr --port 27020
 
   shard3:
     image: mongo:3.4
+    ports:
+      - "8003:27020"
     command: mongod --shardsvr --port 27020
