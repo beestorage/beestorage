@@ -25,6 +25,7 @@ services:
       - shard1
       - shard2
       - shard3
+      - shard4
 
   config1:
     image: mongo:3.4
@@ -50,4 +51,10 @@ services:
     image: mongo:3.4
     ports:
       - "8003:27020"
+    command: mongod --shardsvr --port 27020
+
+  shard4:
+    image: mongo:3.4
+    ports:
+      - "8004:27020"
     command: mongod --shardsvr --port 27020
