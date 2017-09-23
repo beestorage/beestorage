@@ -10,6 +10,9 @@ services:
       - MONGO_STORAGE_SERVER_COLLECTION=imagefile
       - UPLOAD_ENABLED=True
       - UPLOAD_PUT_ALLOWED=True
+      - MAX_WIDTH=0
+      - MAX_HEIGHT=0
+      - UPLOAD_MAX_SIZE=0
     ports:
     - "8000:8000"
     depends_on:
