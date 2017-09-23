@@ -2,15 +2,21 @@
 Thumbor mongo sharding compose
 
 ## For windows before `git clone`
-## use
+### use
 ```
 git config --global core.autocrlf false
 git config --global core.eol lf
 ```
 
+### Default git setting
+```
+git config --global core.autocrlf true
+git config --global core.eol crlf
+```
+
 ## How to basic use
 ### https://youtu.be/HVWybJD48C8
-[![IMAGE ALT TEXT](http://img.youtube.com/vi/HVWybJD48C8/0.jpg)](https://youtu.be/HVWybJD48C8 "How to ... ")
+[![IMAGE ALT TEXT](http://img.youtube.com/vi/HVWybJD48C8/0.jpg)](https://youtu.be/HVWybJD48C8 "How to basic use... ")
 
 
 ```
