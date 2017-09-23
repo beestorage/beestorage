@@ -27,6 +27,8 @@ git config --global core.eol crlf
   shard2n2  localhost:8004
 ```
 
-[id]: https://github.com/APSL/docker-thumbor "Base Thumbor Docker"
-
-[id]: https://hub.docker.com/r/lionants02/thumbormongodocker/ "my Thumbor edit compatible Mongo GridFS"
+### Reference
+[Base thumbor docker](https://github.com/APSL/docker-thumbor)
+[Base thumbor source code](https://github.com/thumbor/thumbor)
+[My docker thumbor compatible Mongo3.4 [GridFS](https://github.com/lionants02/ThumborMongoDocker)
+[Mongo doc shard deploy](https://docs.mongodb.com/manual/tutorial/deploy-shard-cluster/)
