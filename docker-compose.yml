@@ -15,6 +15,7 @@ services:
       - UPLOAD_MAX_SIZE=0
     ports:
     - "8000:8000"
+    restart: on-failure
     deploy:
       mode: replicated
       replicas: 2
