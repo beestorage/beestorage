@@ -1,6 +1,6 @@
 rs.initiate(
 {
-  "_id": "dataGroup2",
+  "_id": "dataGroup3",
   "members": [
     {
       "_id": 0,

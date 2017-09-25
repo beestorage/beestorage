@@ -1,5 +1,5 @@
 #sleep 5
-su --command "mongo --host config1 --port 27019 < /data/initdb_configserver.json" &
+su --command "mongo --host shard1n1 --port 27019 < /data/initdb_configserver.json" &
 su --command "mongo --host shard1n1 --port 27020 < /data/initdb_shard1nxxx.json" &
 su --command "mongo --host shard2n1 --port 27020 < /data/initdb_shard2nxxx.json" &
 su --command "mongo --host shard3n1 --port 27020 < /data/initdb_shard3nxxx.json" &
