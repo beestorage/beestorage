@@ -1,10 +1,7 @@
-# Jmeter Test thumbor
-I use Jmeter version 3.3 r1808647
-
-
+# Jmeter3.3 r1808647 Test thumbor
+---
 ## Important *****
 ### In Test Thumbol > Upload Test  
-
 
 "CSV List filename" is csv list files path for upload.  
 Example:
