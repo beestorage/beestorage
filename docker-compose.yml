@@ -66,12 +66,12 @@ services:
     ports:
     - "27081:27081"
     depends_on:
-      - config1
-      - config2
       - shard1n1
       - shard1n2
       - shard2n1
       - shard2n2
+      - shard3n1
+      - shard3n2
 
   shard1n1:
     image: mongo:3.4
