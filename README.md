@@ -23,11 +23,19 @@ How to use thumbor https://thumbor.readthedocs.io/en/latest/index.html
 ---
 ### Port map.
 ```
-  router1   localhost:27081
-  shard1n1  localhost:8001
-  shard1n2  localhost:8002
-  shard2n1  localhost:8003
-  shard2n2  localhost:8004
+  -----------------------------------------------------
+  nginx                       |   http://localhost:7000
+  thumbor1                    |   http://localhost:8000
+  -----------------------------------------------------
+  router1   data mongo        |   localhost:27081
+  -----------------------------------------------------
+  Data shard shard1n1 mongo   |   localhost:8001
+  Data shard shard1n2 mongo   |   localhost:8002
+  Data shard shard2n1 mongo   |   localhost:8003
+  Data shard shard2n2 mongo   |   localhost:8004
+  Data shard shard3n1 mongo   |   localhost:8005
+  Data shard shard3n2 mongo   |   localhost:8006
+  -----------------------------------------------------
 ```
 ---
 #### Reference
