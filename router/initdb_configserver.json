@@ -5,13 +5,33 @@ rs.initiate(
   "members": [
     {
       "_id": 0,
-      "host": "config1:27019",
+      "host": "shard1n1:27019",
       "priority": 100
     },
     {
       "_id": 1,
-      "host": "config2:27019",
+      "host": "shard1n2:27019",
       "priority": 80
+    },
+    {
+      "_id": 2,
+      "host": "shard2n1:27019",
+      "priority": 60
+    },
+    {
+      "_id": 3,
+      "host": "shard2n2:27019",
+      "priority": 40
+    },
+    {
+      "_id": 4,
+      "host": "shard3n1:27019",
+      "priority": 20
+    },
+    {
+      "_id": 5,
+      "host": "shard3n2:27019",
+      "priority": 10
     }
   ]
 }

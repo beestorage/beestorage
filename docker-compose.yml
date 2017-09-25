@@ -73,42 +73,50 @@ services:
       - shard2n1
       - shard2n2
 
-  config1:
-    image: mongo:3.4
-    restart: on-failure
-    tmpfs: /data/configdb
-    command: mongod --configsvr --smallfiles --replSet configserver --port 27019
-
-  config2:
-    image: mongo:3.4
-    restart: on-failure
-    tmpfs: /data/configdb
-    command: mongod --configsvr --smallfiles --replSet configserver --port 27019
-
   shard1n1:
     image: mongo:3.4
     restart: on-failure
+    tmpfs: /data/configdb
     ports:
       - "8001:27020"
-    command: mongod --noprealloc --replSet dataGroup1 --shardsvr --port 27020
+    command: su --command "mongod --noprealloc --replSet dataGroup1 --shardsvr --port 27020 &" && su --command "mongod --configsvr --smallfiles --replSet configserver --port 27019 &"
 
   shard1n2:
     image: mongo:3.4
     restart: on-failure
+    tmpfs: /data/configdb
     ports:
       - "8002:27020"
-    command: mongod --noprealloc --replSet dataGroup1 --shardsvr --port 27020
+    command: su --command "mongod --noprealloc --replSet dataGroup1 --shardsvr --port 27020 &" && su --command "mongod --configsvr --smallfiles --replSet configserver --port 27019 &"
 
   shard2n1:
     image: mongo:3.4
     restart: on-failure
+    tmpfs: /data/configdb
     ports:
       - "8003:27020"
-    command: mongod --noprealloc --replSet dataGroup2 --shardsvr --port 27020
+    command: su --command "mongod --noprealloc --replSet dataGroup2 --shardsvr --port 27020 &" && su --command "mongod --configsvr --smallfiles --replSet configserver --port 27019 &"
 
   shard2n2:
     image: mongo:3.4
     restart: on-failure
+    tmpfs: /data/configdb
     ports:
       - "8004:27020"
-    command: mongod --noprealloc --replSet dataGroup2 --shardsvr --port 27020
+    command: su --command "mongod --noprealloc --replSet dataGroup2 --shardsvr --port 27020 &" && su --command "mongod --configsvr --smallfiles --replSet configserver --port 27019 &"
+
+  shard3n1:
+    image: mongo:3.4
+    restart: on-failure
+    tmpfs: /data/configdb
+    ports:
+      - "8005:27020"
+    command: su --command "mongod --noprealloc --replSet dataGroup3 --shardsvr --port 27020 &" && su --command "mongod --configsvr --smallfiles --replSet configserver --port 27019 &"
+
+  shard3n2:
+    image: mongo:3.4
+    restart: on-failure
+    tmpfs: /data/configdb
+    ports:
+      - "8006:27020"
+    command: su --command "mongod --noprealloc --replSet dataGroup3 --shardsvr --port 27020 &" && su --command "mongod --configsvr --smallfiles --replSet configserver --port 27019 &"

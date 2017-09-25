@@ -1,0 +1,17 @@
+rs.initiate(
+{
+  "_id": "dataGroup2",
+  "members": [
+    {
+      "_id": 0,
+      "host": "shard3n1:27020",
+      "priority": 100
+    },
+    {
+      "_id": 1,
+      "host": "shard3n2:27020",
+      "priority": 50
+    }
+  ]
+}
+)
