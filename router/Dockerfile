@@ -4,4 +4,4 @@ COPY initdb_indexkey.json /data/initdb_indexkey.json
 COPY initdb_configserver.json /data/initdb_configserver.json
 COPY initdb_shard1nxxx.json /data/initdb_shard1nxxx.json
 COPY initdb_shard2nxxx.json /data/initdb_shard2nxxx.json
-COPY initdb_shard2nxxx.json /data/initdb_shard3nxxx.json
+COPY initdb_shard3nxxx.json /data/initdb_shard3nxxx.json
