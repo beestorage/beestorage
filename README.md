@@ -1,4 +1,4 @@
-# Thumbor Mongo Sharding Compose  
+# Thumbor mongo GridFS sharding docker compose  
 [![alt text](https://image.ibb.co/jVkN3k/indock_newmodel.png)](https://ibb.co/gXHD9Q)  
 ### For windows before `git clone` Use  
 
