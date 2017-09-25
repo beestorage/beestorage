@@ -13,14 +13,10 @@ G:\Pictures\Wallpaper\HlmWDMU.jpg
 G:\Pictures\Wallpaper\IMG_947404.jpg
 ```
 ---
-2. "BeanShell PostProcessor" config at first line
-```
-FileWriter fstream = new FileWriter("D:\\temp\\fn_result2.csv",true);
-
-Change "D:\\temp\\fn_result2.csv" to you output filename result file.
-
-thumbor will out put file name is 'cf83b552ad3d4bb99fb8dba7f1048733'
-```
+2. "BeanShell PostProcessor" config at first line  
+`FileWriter fstream = new FileWriter("D:\\temp\\fn_result2.csv",true);`  
+Change `D:\\temp\\fn_result2.csv` to you output filename result file.  
+thumbor will out put file name is `cf83b552ad3d4bb99fb8dba7f1048733`  
 
 Example data in "fn_result2.csv" after run "Upload Test"  
 ```
@@ -28,4 +24,4 @@ Example data in "fn_result2.csv" after run "Upload Test"
 7213332953534d7c877e3945547a8bcc
 68b2822881014edebf994e117d6b5f21
 ```
-
+---
