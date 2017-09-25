@@ -6,7 +6,7 @@ First docker for me....
 ```
 git config --global core.autocrlf false
 git config --global core.eol lf
-git clone https://github.com/lionants02/ThumborMongoShardingCompose.git -b TestConfigInMemoryStorage
+git clone https://github.com/lionants02/ThumborMongoShardingCompose.git -b BalanceByNginx
 ```
 ---
 #### Default git setting before Use ^^^^^^
