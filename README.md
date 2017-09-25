@@ -1,5 +1,5 @@
 # Thumbor Mongo Sharding Compose  
-[![alt text](https://preview.ibb.co/nkiT9Q/indock_newmodel.png)](https://ibb.co/bxaapQ)  
+[![alt text](https://image.ibb.co/jVkN3k/indock_newmodel.png)](https://ibb.co/gXHD9Q)  
 ### For windows before `git clone` Use  
 
 First docker for me....
