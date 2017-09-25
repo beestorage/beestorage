@@ -1,4 +1,5 @@
 # Thumbor Mongo Sharding Compose  
+[![alt text](https://preview.ibb.co/nkiT9Q/indock_newmodel.png)](https://ibb.co/bxaapQ)  
 ### For windows before `git clone` Use  
 
 First docker for me....
@@ -27,8 +28,6 @@ https://youtu.be/HVWybJD48C8
   shard2n1  localhost:8003
   shard2n2  localhost:8004
 ```
----
-![Alt text](https://preview.ibb.co/bYcn15/indock.png "Title")
 ---
 #### Reference
 > [Base thumbor docker](https://github.com/APSL/docker-thumbor)  
