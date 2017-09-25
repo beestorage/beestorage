@@ -17,8 +17,9 @@ git config --global core.eol crlf
 ```
 ---
 #### How to basic use  
-https://youtu.be/HVWybJD48C8  
-[![IMAGE ALT TEXT](http://img.youtube.com/vi/HVWybJD48C8/0.jpg)](https://youtu.be/HVWybJD48C8 "How to basic use... ")
+Auto init script.....  
+How to use thumbor https://thumbor.readthedocs.io/en/latest/index.html
+### important host localhost:7000
 ---
 ### Port map.
 ```
