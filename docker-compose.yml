@@ -22,6 +22,7 @@ services:
       - MAX_WIDTH=0
       - MAX_HEIGHT=0
       - UPLOAD_MAX_SIZE=0
+      - MAX_AGE=0
     ports:
     - "8000:8000"
     restart: on-failure
@@ -40,6 +41,7 @@ services:
       - MAX_WIDTH=0
       - MAX_HEIGHT=0
       - UPLOAD_MAX_SIZE=0
+      - MAX_AGE=0
     restart: on-failure
     depends_on:
       - router1
@@ -56,6 +58,7 @@ services:
       - MAX_WIDTH=0
       - MAX_HEIGHT=0
       - UPLOAD_MAX_SIZE=0
+      - MAX_AGE=0
     restart: on-failure
     depends_on:
       - router1
