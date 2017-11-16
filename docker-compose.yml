@@ -8,7 +8,9 @@ networks:
 services:
 
   nginx:
-    image: nginx:latest
+    build: nginx:latest
+    volumes:
+       - /mnt/git/ThumborMongoShardingCompose/nginxBalance:/etc/nginx/conf.d
     ports:
       - "7000:80"
     deploy:
@@ -36,65 +38,6 @@ services:
       - MAX_AGE=0
     ports:
       - "8000:8000"
-    restart: on-failure
-    deploy:
-      mode: replicated
-      replicas: 1
-      restart_policy:
-        condition: on-failure
-    networks:
-      - thumborapi
-    depends_on:
-      - router1
-
-
-  router1:
-    image: mongo:3.4
-    ports:
-      - "27081:27081"
-    deploy:
-      mode: replicated
-      replicas: 1
-    networks:
-      - thumborapi
-    depends_on:
-      - config1
-      - shard1n1
-      - shard2n1
-
-  config1:
-    image: mongo:3.4
-    restart: on-failure
-    tmpfs: /data/configdb
-    command: mongod --configsvr --smallfiles --replSet configserver --port 27019
-    deploy:
-      mode: replicated
-      replicas: 1
-      restart_policy:
-        condition: on-failure
-    networks:
-      - thumborapi
-
-  shard1n1:
-    image: mongo:3.4
-    restart: on-failure
-    ports:
-      - "8001:27020"
-    command: mongod --noprealloc --replSet dataGroup1 --shardsvr --port 27020
-    deploy:
-      mode: replicated
-      replicas: 1
-      restart_policy:
-        condition: on-failure
-    networks:
-      - thumborapi
-
-  shard2n1:
-    image: mongo:3.4
-    restart: on-failure
-    ports:
-      - "8003:27020"
-    command: mongod --noprealloc --replSet dataGroup2 --shardsvr --port 27020
     deploy:
       mode: replicated
       replicas: 1
