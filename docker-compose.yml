@@ -8,7 +8,7 @@ networks:
 services:
 
   nginx:
-    build: nginx:latest
+    image: nginx:latest
     volumes:
        - /mnt/git/ThumborMongoShardingCompose/nginxBalance:/etc/nginx/conf.d
     ports:
