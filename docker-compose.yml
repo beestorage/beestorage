@@ -52,7 +52,8 @@ services:
     ports:
       - "27081:27081"
     deploy:
-
+      restart_policy:
+        condition: on-failure
     networks:
       - thumborapi
     depends_on:
