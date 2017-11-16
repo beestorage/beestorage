@@ -7,8 +7,6 @@ services:
     - "7000:80"
     depends_on:
       - thumbor1
-      - thumbor2
-      - thumbor3
 
   thumbor1:
     image: lionants02/thumbormongodocker:1.3
@@ -27,44 +25,6 @@ services:
       - MAX_AGE=0
     ports:
     - "8000:8000"
-    restart: on-failure
-    depends_on:
-      - router1
-
-  thumbor2:
-    image: lionants02/thumbormongodocker:1.3
-    environment:
-      - MONGO_STORAGE_SERVER_HOST=router1
-      - MONGO_STORAGE_SERVER_PORT=27081
-      - MONGO_STORAGE_SERVER_DB=picture
-      - MONGO_STORAGE_SERVER_COLLECTION=imagefile
-      - UPLOAD_ENABLED=True
-      - UPLOAD_PUT_ALLOWED=True
-      - UPLOAD_DELETE_ALLOWED=True
-      - STORAGE_EXPIRATION_SECONDS=2592000
-      - MAX_WIDTH=0
-      - MAX_HEIGHT=0
-      - UPLOAD_MAX_SIZE=0
-      - MAX_AGE=0
-    restart: on-failure
-    depends_on:
-      - router1
-
-  thumbor3:
-    image: lionants02/thumbormongodocker:1.3
-    environment:
-      - MONGO_STORAGE_SERVER_HOST=router1
-      - MONGO_STORAGE_SERVER_PORT=27081
-      - MONGO_STORAGE_SERVER_DB=picture
-      - MONGO_STORAGE_SERVER_COLLECTION=imagefile
-      - UPLOAD_ENABLED=True
-      - UPLOAD_PUT_ALLOWED=True
-      - UPLOAD_DELETE_ALLOWED=True
-      - STORAGE_EXPIRATION_SECONDS=2592000
-      - MAX_WIDTH=0
-      - MAX_HEIGHT=0
-      - UPLOAD_MAX_SIZE=0
-      - MAX_AGE=0
     restart: on-failure
     depends_on:
       - router1
