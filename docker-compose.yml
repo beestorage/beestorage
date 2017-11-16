@@ -5,7 +5,9 @@ services:
     build: ./router
     command: sh -c 'sleep 5 && su --command "sh /data/init.sh &" && sleep 5 && su --command "mongos --configdb configserver/config1:27019 --port 27081"'
     ports:
-    - "27081:27081"
+      - "27081:27081"
+    networks:
+      - thumborapi
     depends_on:
       - config1
       - shard1n1
@@ -16,6 +18,8 @@ services:
     restart: on-failure
     tmpfs: /data/configdb
     command: mongod --configsvr --smallfiles --replSet configserver --port 27019
+    networks:
+      - thumborapi
 
   shard1n1:
     image: mongo:3.4
@@ -23,6 +27,8 @@ services:
     ports:
       - "8001:27020"
     command: mongod --noprealloc --replSet dataGroup1 --shardsvr --port 27020
+    networks:
+      - thumborapi
 
   shard2n1:
     image: mongo:3.4
@@ -30,3 +36,5 @@ services:
     ports:
       - "8003:27020"
     command: mongod --noprealloc --replSet dataGroup2 --shardsvr --port 27020
+    networks:
+      - thumborapi
