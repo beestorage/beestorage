@@ -6,11 +6,6 @@ rs.initiate(
       "_id": 0,
       "host": "shard2n1:27020",
       "priority": 100
-    },
-    {
-      "_id": 1,
-      "host": "shard2n2:27020",
-      "priority": 50
     }
   ]
 }
