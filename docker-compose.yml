@@ -14,8 +14,6 @@ services:
     deploy:
       mode: replicated
       replicas: 1
-    restart_policy:
-      condition: none
     networks:
       - thumborapi
     depends_on:
@@ -58,8 +56,6 @@ services:
     deploy:
       mode: replicated
       replicas: 1
-      restart_policy:
-        condition: none
     networks:
       - thumborapi
     depends_on:
