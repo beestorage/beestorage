@@ -1,4 +1,10 @@
-version: '3'
+version: '3.3'
+
+
+networks:
+  thumborapi:
+    external: true
+
 services:
 
   nginx:
@@ -83,8 +89,3 @@ services:
         condition: on-failure
     networks:
       - thumborapi
-
-
-  networks:
-    thumborapi:
-      external: true
