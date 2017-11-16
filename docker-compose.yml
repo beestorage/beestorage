@@ -12,6 +12,8 @@ services:
     ports:
       - "7000:80"
     deploy:
+      mode: replicated
+      replicas: 1
       restart_policy:
         condition: on-failure
     networks:
@@ -38,6 +40,8 @@ services:
       - "8000:8000"
     restart: on-failure
     deploy:
+      mode: replicated
+      replicas: 1
       restart_policy:
         condition: on-failure
     networks:
@@ -52,6 +56,8 @@ services:
     ports:
       - "27081:27081"
     deploy:
+      mode: replicated
+      replicas: 1
       restart_policy:
         condition: on-failure
     networks:
@@ -67,6 +73,8 @@ services:
     tmpfs: /data/configdb
     command: mongod --configsvr --smallfiles --replSet configserver --port 27019
     deploy:
+      mode: replicated
+      replicas: 1
       restart_policy:
         condition: on-failure
     networks:
@@ -79,6 +87,8 @@ services:
       - "8001:27020"
     command: mongod --noprealloc --replSet dataGroup1 --shardsvr --port 27020
     deploy:
+      mode: replicated
+      replicas: 1
       restart_policy:
         condition: on-failure
     networks:
@@ -91,6 +101,8 @@ services:
       - "8003:27020"
     command: mongod --noprealloc --replSet dataGroup2 --shardsvr --port 27020
     deploy:
+      mode: replicated
+      replicas: 1
       restart_policy:
         condition: on-failure
     networks:
