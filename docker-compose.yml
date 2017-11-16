@@ -50,7 +50,8 @@ services:
 
   router1:
     build: ./router
-    command: sh -c 'sleep 5 && su --command "sh /data/init.sh &" && sleep 5 && su --command "mongos --configdb configserver/config1:27019 --port 27081"'
+    #command: sh -c 'sleep 5 && su --command "sh /data/init.sh &" && sleep 5 && su --command "mongos --configdb configserver/config1:27019 --port 27081"'
+    command: mongod --configsvr --smallfiles --replSet configserver --port 27019
     ports:
       - "27081:27081"
     deploy:
