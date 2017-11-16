@@ -37,19 +37,10 @@ services:
     - "27081:27081"
     depends_on:
       - config1
-      - config2
       - shard1n1
-      - shard1n2
       - shard2n1
-      - shard2n2
 
   config1:
-    image: mongo:3.4
-    restart: on-failure
-    tmpfs: /data/configdb
-    command: mongod --configsvr --smallfiles --replSet configserver --port 27019
-
-  config2:
     image: mongo:3.4
     restart: on-failure
     tmpfs: /data/configdb
@@ -62,23 +53,9 @@ services:
       - "8001:27020"
     command: mongod --noprealloc --replSet dataGroup1 --shardsvr --port 27020
 
-  shard1n2:
-    image: mongo:3.4
-    restart: on-failure
-    ports:
-      - "8002:27020"
-    command: mongod --noprealloc --replSet dataGroup1 --shardsvr --port 27020
-
   shard2n1:
     image: mongo:3.4
     restart: on-failure
     ports:
       - "8003:27020"
-    command: mongod --noprealloc --replSet dataGroup2 --shardsvr --port 27020
-
-  shard2n2:
-    image: mongo:3.4
-    restart: on-failure
-    ports:
-      - "8004:27020"
     command: mongod --noprealloc --replSet dataGroup2 --shardsvr --port 27020
