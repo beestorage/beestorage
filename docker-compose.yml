@@ -10,7 +10,12 @@ services:
   nginx:
     build: ./nginxBalance
     ports:
-    - "7000:80"
+      - "7000:80"
+    deploy:
+      restart_policy:
+        condition: on-failure
+    networks:
+      - thumborapi
     depends_on:
       - thumbor1
 
