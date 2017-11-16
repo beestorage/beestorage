@@ -8,7 +8,7 @@ networks:
 services:
 
   nginx:
-    build: ./nginxBalance
+    image: nginx:latest
     ports:
       - "7000:80"
     deploy:
@@ -49,8 +49,7 @@ services:
 
 
   router1:
-    build: ./router
-    command: sh -c 'sleep 5 && su --command "sh /data/init.sh &" && sleep 5 && su --command "mongos --configdb configserver/config1:27019 --port 27081"'
+    image: mongo:3.4
     ports:
       - "27081:27081"
     deploy:
