@@ -40,7 +40,7 @@ services:
       - "8000:8000"
     deploy:
       mode: replicated
-      replicas: 1
+      replicas: 2
       restart_policy:
         condition: on-failure
     networks:
