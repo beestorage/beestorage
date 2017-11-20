@@ -11,6 +11,8 @@ services:
     image: mongo:3.4
     ports:
       - "27081:27081"
+    volumes:
+      - /mnt:/data
     deploy:
       mode: replicated
       replicas: 1
@@ -25,8 +27,8 @@ services:
 
   config1:
     image: mongo:3.4
-    restart: on-failure
-    tmpfs: /data/configdb
+    volumes:
+      - /mnt:/data
     command: mongod --configsvr --smallfiles --replSet configserver --port 27019
     deploy:
       mode: replicated
@@ -39,7 +41,8 @@ services:
 
   shard1n1:
     image: mongo:3.4
-    restart: on-failure
+    volumes:
+      - /mnt:/data
     ports:
       - "8001:27020"
     command: mongod --noprealloc --replSet dataGroup1 --shardsvr --port 27020
