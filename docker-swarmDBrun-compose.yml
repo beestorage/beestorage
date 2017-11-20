@@ -1,0 +1,54 @@
+version: '3.3'
+
+networks:
+  mongoIMG:
+    external: true
+
+
+services:
+
+  router1:
+    image: mongo:3.4
+    ports:
+      - "27081:27081"
+    volumes:
+      - /mnt/db:/data
+    command: sh -c 'su --command "mongos --configdb configserver/config1:27019 --port 27081"'
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.labels.mongo.role == router1
+    networks:
+      - mongoIMG
+
+  config1:
+    image: mongo:3.4
+    volumes:
+      - /mnt/configdb:/data/configdb
+    command: mongod --configsvr --smallfiles --replSet configserver --port 27019
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.labels.mongo.role == router1
+    networks:
+      - mongoIMG
+
+  shard1n1:
+    image: mongo:3.4
+    volumes:
+      - /mnt:/data
+    ports:
+      - "8001:27020"
+    command: mongod --noprealloc --replSet dataGroup1 --shardsvr --port 27020
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.labels.mongo.role == shard1n1
+    networks:
+      - mongoIMG
