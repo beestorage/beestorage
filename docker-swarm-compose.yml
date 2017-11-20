@@ -10,16 +10,17 @@ services:
   nginx:
     image: nginx:latest
     volumes:
-       - /mnt/git/ThumborMongoShardingCompose/nginxBalance:/etc/nginx/conf.d
+       - /mnt/ThumborMongoShardingCompose/nginxBalance:/etc/nginx/conf.d
     ports:
       - "80:80"
     deploy:
       mode: replicated
       replicas: 1
+      placement:
+        constraints:
+          - node.labels.mongo.role == router1
     networks:
       - thumborapi
-    depends_on:
-      - thumbor1
 
   thumbor1:
     image: lionants02/thumbormongodocker:1.3
