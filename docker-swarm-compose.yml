@@ -24,7 +24,7 @@ services:
   thumbor1:
     image: lionants02/thumbormongodocker:1.3
     environment:
-      - MONGO_STORAGE_SERVER_HOST=10.226.49.110
+      - MONGO_STORAGE_SERVER_HOST=11.0.0.164
       - MONGO_STORAGE_SERVER_PORT=27081
       - MONGO_STORAGE_SERVER_DB=picture
       - MONGO_STORAGE_SERVER_COLLECTION=imagefile
