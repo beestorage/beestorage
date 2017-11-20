@@ -6,6 +6,16 @@ networks:
 
 
 services:
+  router2:
+    image: mongo:3.4
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.labels.mongo.role == router1
+    networks:
+      - mongoIMG
 
   router1:
     image: mongo:3.4
