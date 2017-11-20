@@ -12,7 +12,7 @@ services:
     volumes:
        - /mnt/ThumborMongoShardingCompose/nginxBalance:/etc/nginx/conf.d
     ports:
-      - "80:80"
+      - "8123:80"
     deploy:
       mode: replicated
       replicas: 1
