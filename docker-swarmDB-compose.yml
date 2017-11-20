@@ -18,6 +18,10 @@ services:
       placement:
         constraints:
           - node.labels.mongo.role == router1
+    depends_on:
+      - config1
+      - shard1n1
+      - shard2n1
     networks:
       - mongoIMG
 
@@ -38,7 +42,7 @@ services:
   shard1n1:
     image: mongo:3.4
     volumes:
-      - /mnt:/data
+      - /mnt/db:/data/db
     ports:
       - "8001:27020"
     command: mongod --noprealloc --replSet dataGroup1 --shardsvr --port 27020

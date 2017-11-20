@@ -20,6 +20,9 @@ services:
       placement:
         constraints:
           - node.labels.mongo.role == router1
+    depends_on:
+      - config1
+      - shard1n1
     networks:
       - mongoIMG
 
