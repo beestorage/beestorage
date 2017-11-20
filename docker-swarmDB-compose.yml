@@ -13,6 +13,7 @@ services:
       - "27081:27081"
     volumes:
       - /mnt:/data
+    command: mongod --noprealloc --replSet dataGroup1 --shardsvr --port 27020
     deploy:
       mode: replicated
       replicas: 1
