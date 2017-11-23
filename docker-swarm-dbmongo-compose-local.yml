@@ -12,7 +12,7 @@ services:
   nginx:
     image: nginx:latest
     volumes:
-       - /mnt/ThumborMongoShardingCompose/nginxBalance:/etc/nginx/conf.d
+       - /mnt/beestorage-swarm/nginxBalance:/etc/nginx/conf.d
     ports:
       - "8123:80"
     deploy:
@@ -49,8 +49,6 @@ services:
     image: mongo:3.4
     ports:
       - "27081:27081"
-    volumes:
-      - /mnt/db:/data/db
     command: sh -c 'su --command "mongos --configdb configserver/config1:27019 --port 27081"'
     deploy:
       mode: replicated
@@ -63,8 +61,6 @@ services:
 
   config1:
     image: mongo:3.4
-    volumes:
-      - /mnt/configdb:/data/configdb
     command: mongod --configsvr --smallfiles --replSet configserver --port 27019
     deploy:
       mode: replicated
@@ -74,8 +70,6 @@ services:
 
   shard1n1:
     image: mongo:3.4
-    volumes:
-      - /mnt/db:/data/db
     ports:
       - "8001:27020"
     command: mongod --noprealloc --replSet dataGroup1 --shardsvr --port 27020

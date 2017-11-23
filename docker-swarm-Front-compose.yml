@@ -10,7 +10,7 @@ services:
   nginx:
     image: nginx:latest
     volumes:
-       - /mnt/ThumborMongoShardingCompose/nginxBalance:/etc/nginx/conf.d
+       - /mnt/beestorage-swarm/nginxBalance:/etc/nginx/conf.d
     ports:
       - "8123:80"
     deploy:
