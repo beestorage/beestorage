@@ -1,36 +1,26 @@
-# Thumbor Mongo Sharding Compose  
-![Alt text](https://preview.ibb.co/bYcn15/indock.png "Title")  
----
-### For windows before `git clone` Use  
-First docker for me....
+# BeeStorage จัดการรูปง่ายสุดใน 3 โลก  
+### สำหรับนักพัฒนา.  
 
-```
-git config --global core.autocrlf false
-git config --global core.eol lf
-git clone https://github.com/lionants02/ThumborMongoShardingCompose.git -b BalanceByNginx
-```
+สร้างขึ้นมาเพื่อตอบโจทย์สำหรับ นักพัฒนา  
+- **BeeStorage** ได้เลือก **[thumbor][thumbor-url]** เป็น front end มีความสามารถในการ **[process filter][thumbor-filter-url]** ผ่านการเรียก function ใน **[URL][thumbor-filter-url]** ได้ในตัว และยังมี **[library support หลายภาษา][thumbor-library-url]**  
+- ใช้ **[nginx][nginx-url]** ที่มีความยืดหยุ่นในการจัดการระบบแคช และ ระบบการเชื่อมต่อคั่นไว้ ก่อนออกสู่ระบบภายนอกอีกชั้น  
+- ระบบการจัดเก็บไฟล์ หลังบ้านเป็น **[mongodb GridFS][mongo-gridfs-url]** ที่มีความสามารถเด่นเรื่องการ **สเกล** และความคง **ทนต่อระบบล่มได้สูง**
+สามารถ เพิ่มขนาดเพิ่มเครื่อง เวลาระบบโต ภายหลังได้
+- ระบบทั้งหมดอยู่บน **Docker Swarm** ติดตั้งจัดการได้ง่ายเพียงไม่กี่บรรทัด
 ---
-#### Default git setting before Use ^^^^^^
-```
-git config --global core.autocrlf true
-git config --global core.eol crlf
-```
----
-#### How to basic use  
-https://youtu.be/HVWybJD48C8  
-[![IMAGE ALT TEXT](http://img.youtube.com/vi/HVWybJD48C8/0.jpg)](https://youtu.be/HVWybJD48C8 "How to basic use... ")
----
-### Port map.
-```
-  router1   localhost:27081
-  shard1n1  localhost:8001
-  shard1n2  localhost:8002
-  shard2n1  localhost:8003
-  shard2n2  localhost:8004
-```
----
-#### Reference
-> [Base thumbor docker](https://github.com/APSL/docker-thumbor)  
-> [Base thumbor source code](https://github.com/thumbor/thumbor)  
-> [My docker thumbor compatible Mongo3.4 GridFS](https://github.com/lionants02/ThumborMongoDocker)  
-> [Mongo doc shard deploy](https://docs.mongodb.com/manual/tutorial/deploy-shard-cluster/)  
+### ความต้องการของระบบ
+**BeeStorage** พัฒนาให้สามารถ **deploy บน Docker Swarm** ซึ่งสามารถจัดการได้ง่ายเพียงไม่กี่บรรทัด ก็สามารถใช้ระบบของเราได้แล้ว เครื่องที่[ติดตั้ง **docker**][docker-install-url] อยู่แล้วก็เพียง[ติดตั้ง **swarm**][docker-swarm-url] เพิ่มเข้าไป หรือ ใช้ผ่าน **[Docker Machine][docker-machine-url]** ได้เหมือนกัน
+
+# สามารถอ่านเพิ่มเติมได้ใน Wiki
+
+
+[thumbor-url]: https://thumbor.readthedocs.io
+[thumbor-filter-url]: https://thumbor.readthedocs.io/en/latest/filters.html
+[thumbor-library-url]: https://thumbor.readthedocs.io/en/latest/libraries.html?highlight=library
+[mongo-gridfs-url]: https://docs.mongodb.com/manual/core/gridfs/#when-to-use-gridfs
+[mongo-url]: https://www.mongodb.com/
+[mongo-shard-url]: https://docs.mongodb.com/manual/sharding/
+[nginx-url]: https://www.nginx.com/
+[docker-install-url]: https://docs.docker.com/engine/installation/
+[docker-swarm-url]: https://docs.docker.com/engine/swarm/swarm-tutorial/
+[docker-machine-url]: https://docs.docker.com/machine/get-started/#create-a-machine
