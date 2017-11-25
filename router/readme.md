@@ -1,1 +1,1 @@
-# อ่านก่อนนะ Shard config
+# คำสั่งสำหรับ Config mongo
