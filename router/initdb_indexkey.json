@@ -1,6 +1,5 @@
 use picture
 sh.addShard( "dataGroup1/shard1n1:27020")
-sh.addShard( "dataGroup2/shard2n1:27020")
 db.imagefile.createIndex({"file_id": 1 })
 db.fs.files.createIndex({"filename":1,"uploadDate":1})
 db.fs.chunks.createIndex({"files_id":1,"n":1})
