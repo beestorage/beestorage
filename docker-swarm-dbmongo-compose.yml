@@ -1,10 +1,5 @@
 version: '3.3'
 
-networks:
-  mongoIMG:
-    external: true
-
-
 services:
 
   router1:
@@ -24,8 +19,6 @@ services:
     depends_on:
       - config1
       - shard1n1
-    networks:
-      - mongoIMG
 
   config1:
     image: mongo:3.4
@@ -38,8 +31,6 @@ services:
       placement:
         constraints:
           - node.labels.mongo.role == router1
-    networks:
-      - mongoIMG
 
   shard1n1:
     image: mongo:3.4
@@ -54,5 +45,3 @@ services:
       placement:
         constraints:
           - node.labels.mongo.role == shard1n1
-    networks:
-      - mongoIMG
