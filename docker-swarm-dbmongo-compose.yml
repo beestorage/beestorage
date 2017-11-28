@@ -9,7 +9,7 @@ services:
     volumes:
       - /mnt/beestorage-swarm/database/router/db:/data/db
       - /mnt/beestorage-swarm/database/router/configdb:/data/configdb
-    command: sh -c 'su --command "mongos --configdb configserver/config1:27019 --port 27081"'
+    command: sh -c 'su --command "mongos --configdb configserver/11.0.0.164:27019 --port 27081"'
     deploy:
       mode: replicated
       replicas: 1
@@ -24,6 +24,8 @@ services:
     image: mongo:3.4
     volumes:
       - /mnt/beestorage-swarm/database/configdb:/data/configdb
+    ports:
+      - "27019:27019"
     command: mongod --configsvr --smallfiles --replSet configserver --port 27019
     deploy:
       mode: replicated
@@ -37,7 +39,7 @@ services:
     volumes:
       - /mnt/beestorage-swarm/database/db:/data/db
     ports:
-      - "8001:27020"
+      - "27020:27020"
     command: mongod --noprealloc --replSet dataGroup1 --shardsvr --port 27020
     deploy:
       mode: replicated
