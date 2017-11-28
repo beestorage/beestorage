@@ -16,7 +16,6 @@ services:
       placement:
         constraints:
           - node.labels.mongo.role == router1
-      network_mode: "host"
     depends_on:
       - config1
       - shard1n1
@@ -32,7 +31,6 @@ services:
       placement:
         constraints:
           - node.labels.mongo.role == router1
-      network_mode: "host"
 
   shard1n1:
     image: mongo:3.4
@@ -47,4 +45,3 @@ services:
       placement:
         constraints:
           - node.labels.mongo.role == shard1n1
-      network_mode: "host"
