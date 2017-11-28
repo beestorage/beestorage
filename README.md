@@ -14,6 +14,8 @@
 # สามารถอ่านเพิ่มเติมได้ใน Wiki
 
 
+Use front end tcp/8123
+
 [thumbor-url]: https://thumbor.readthedocs.io
 [thumbor-filter-url]: https://thumbor.readthedocs.io/en/latest/filters.html
 [thumbor-library-url]: https://thumbor.readthedocs.io/en/latest/libraries.html?highlight=library
