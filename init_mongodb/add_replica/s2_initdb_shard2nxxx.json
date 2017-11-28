@@ -1,0 +1,12 @@
+rs.add(
+{
+  "_id": "dataGroup2",
+  "members": [
+    {
+      "_id": 2,
+      "host": "shard2n2:27020",
+      "priority": 99
+    }
+  ]
+}
+)
