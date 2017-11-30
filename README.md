@@ -11,7 +11,7 @@
 ### ความต้องการของระบบ
 **BeeStorage** พัฒนาให้สามารถ **deploy บน Docker Swarm** ซึ่งสามารถจัดการได้ง่ายเพียงไม่กี่บรรทัด ก็สามารถใช้ระบบของเราได้แล้ว เครื่องที่[ติดตั้ง **docker**][docker-install-url] อยู่แล้วก็เพียง[ติดตั้ง **swarm**][docker-swarm-url] เพิ่มเข้าไป หรือ ใช้ผ่าน **[Docker Machine][docker-machine-url]** ได้เหมือนกัน
 
-# [สามารถอ่านเพิ่มเติมได้ใน Wiki][wiki-url]
+[**สามารถอ่านเพิ่มเติมได้ใน Wiki คลิก**][wiki-url]
 
 
 Use front end tcp/8123
