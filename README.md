@@ -11,7 +11,7 @@
 ### ความต้องการของระบบ
 **BeeStorage** พัฒนาให้สามารถ **deploy บน Docker Swarm** ซึ่งสามารถจัดการได้ง่ายเพียงไม่กี่บรรทัด ก็สามารถใช้ระบบของเราได้แล้ว เครื่องที่[ติดตั้ง **docker**][docker-install-url] อยู่แล้วก็เพียง[ติดตั้ง **swarm**][docker-swarm-url] เพิ่มเข้าไป หรือ ใช้ผ่าน **[Docker Machine][docker-machine-url]** ได้เหมือนกัน
 
-# สามารถอ่านเพิ่มเติมได้ใน Wiki
+# [สามารถอ่านเพิ่มเติมได้ใน Wiki][wiki-url]
 
 
 Use front end tcp/8123
@@ -26,3 +26,4 @@ Use front end tcp/8123
 [docker-install-url]: https://docs.docker.com/engine/installation/
 [docker-swarm-url]: https://docs.docker.com/engine/swarm/swarm-tutorial/
 [docker-machine-url]: https://docs.docker.com/machine/get-started/#create-a-machine
+[wiki-url]: https://github.com/beestorage/beestorage-swarm/wiki
