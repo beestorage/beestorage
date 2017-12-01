@@ -11,6 +11,21 @@
 ### ความต้องการของระบบ
 **BeeStorage** พัฒนาให้สามารถ **deploy บน Docker Swarm** ซึ่งสามารถจัดการได้ง่ายเพียงไม่กี่บรรทัด ก็สามารถใช้ระบบของเราได้แล้ว เครื่องที่[ติดตั้ง **docker**][docker-install-url] อยู่แล้วก็เพียง[ติดตั้ง **swarm**][docker-swarm-url] เพิ่มเข้าไป หรือ ใช้ผ่าน **[Docker Machine][docker-machine-url]** ได้เหมือนกัน
 
+---
+### Clone และติดตั้งด้วยคำสั่ง
+ให้เรา Clone โปรเจคมาแล้วให้ทำการ Deploy ด้วยคำสั่งด้านล่าง  
+>สำหรับการใช้งานครั้งแรก รอระบบทำการ กำหนดค่าเริ่มต้นประมาณ 1 นาที
+
+```
+$ sudo docker stack deploy -c docker-swarm-dbmongo-compose.yml mongoimg
+$ sudo docker stack deploy -c docker-swarm-Front-compose.yml thumapi
+```
+---
+### การใช้งาน
+สามารถทดสอบการใช้งานเบื้องต้นได้ด้วย [**postman**][postman-url]
+
+
+
 [**สามารถอ่านเพิ่มเติมได้ใน Wiki คลิก**][wiki-url]
 
 
@@ -47,6 +62,8 @@
 
 Use front end tcp/8123
 
+
+[postman-url]: https://www.getpostman.com/
 [thumbor-url]: https://thumbor.readthedocs.io
 [thumbor-filter-url]: https://thumbor.readthedocs.io/en/latest/filters.html
 [thumbor-library-url]: https://thumbor.readthedocs.io/en/latest/libraries.html?highlight=library
