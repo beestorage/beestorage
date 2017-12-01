@@ -5,7 +5,7 @@ services:
   nginx:
     image: nginx:latest
     volumes:
-       - /mnt/beestorage-swarm/nginxBalance:/etc/nginx/conf.d
+       - nginxBalance:/etc/nginx/conf.d
     ports:
       - "8123:80"
     deploy:
