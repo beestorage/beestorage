@@ -1,10 +1,5 @@
 version: '3.3'
 
-networks:
-  mongoIMG:
-    external: true
-
-
 services:
 
   router1:
@@ -12,9 +7,9 @@ services:
     ports:
       - "27081:27081"
     volumes:
-      - /mnt/beestorage-swarm/database/router/db:/data/db
-      - /mnt/beestorage-swarm/database/router/configdb:/data/configdb
-    command: sh -c 'su --command "mongos --configdb configserver/config1:27019 --port 27081"'
+      - database/router/db:/data/db
+      - database/router/configdb:/data/configdb
+    command: sh -c 'su --command "mongos --configdb configserver/11.0.0.164:27019 --port 27081"'
     deploy:
       mode: replicated
       replicas: 1
@@ -24,13 +19,13 @@ services:
     depends_on:
       - config1
       - shard1n1
-    networks:
-      - mongoIMG
 
   config1:
     image: mongo:3.4
     volumes:
-      - /mnt/beestorage-swarm/database/configdb:/data/configdb
+      - database/configdb:/data/configdb
+    ports:
+      - "27019:27019"
     command: mongod --configsvr --smallfiles --replSet configserver --port 27019
     deploy:
       mode: replicated
@@ -38,15 +33,13 @@ services:
       placement:
         constraints:
           - node.labels.mongo.role == router1
-    networks:
-      - mongoIMG
 
   shard1n1:
     image: mongo:3.4
     volumes:
-      - /mnt/beestorage-swarm/database/db:/data/db
+      - database/db:/data/db
     ports:
-      - "8001:27020"
+      - "27020:27020"
     command: mongod --noprealloc --replSet dataGroup1 --shardsvr --port 27020
     deploy:
       mode: replicated
@@ -54,5 +47,3 @@ services:
       placement:
         constraints:
           - node.labels.mongo.role == shard1n1
-    networks:
-      - mongoIMG

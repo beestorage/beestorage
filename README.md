@@ -11,8 +11,41 @@
 ### ความต้องการของระบบ
 **BeeStorage** พัฒนาให้สามารถ **deploy บน Docker Swarm** ซึ่งสามารถจัดการได้ง่ายเพียงไม่กี่บรรทัด ก็สามารถใช้ระบบของเราได้แล้ว เครื่องที่[ติดตั้ง **docker**][docker-install-url] อยู่แล้วก็เพียง[ติดตั้ง **swarm**][docker-swarm-url] เพิ่มเข้าไป หรือ ใช้ผ่าน **[Docker Machine][docker-machine-url]** ได้เหมือนกัน
 
-# สามารถอ่านเพิ่มเติมได้ใน Wiki
+[**สามารถอ่านเพิ่มเติมได้ใน Wiki คลิก**][wiki-url]
 
+
+## License
+
+    MIT License
+
+    Copyright (c) 2017 NECTEC
+       National Electronics and Computer Technology Center, Thailand
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+
+[![NECTEC](http://www.nectec.or.th/themes/nectec/img/logo.png)](https://www.nectec.or.th)
+
+
+
+
+Use front end tcp/8123
 
 [thumbor-url]: https://thumbor.readthedocs.io
 [thumbor-filter-url]: https://thumbor.readthedocs.io/en/latest/filters.html
@@ -24,3 +57,4 @@
 [docker-install-url]: https://docs.docker.com/engine/installation/
 [docker-swarm-url]: https://docs.docker.com/engine/swarm/swarm-tutorial/
 [docker-machine-url]: https://docs.docker.com/machine/get-started/#create-a-machine
+[wiki-url]: https://github.com/beestorage/beestorage-swarm/wiki
