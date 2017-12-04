@@ -1,6 +1,5 @@
 # BeeStorage ฝากรูปง่ายสุดใน 3 โลก  
 ### สำหรับนักพัฒนา.  
-![Alt text](https://image.ibb.co/kyzdOR/Swarm.png "BeeStorage infa")  
 สร้างขึ้นมาเพื่อตอบโจทย์สำหรับ นักพัฒนา  
 - **BeeStorage** ได้เลือก **[thumbor][thumbor-url]** เป็น front end มีความสามารถในการ **[process filter][thumbor-filter-url]** ผ่านการเรียก function ใน **[URL][thumbor-filter-url]** ได้ในตัว และยังมี **[library support หลายภาษา][thumbor-library-url]**  
 - ใช้ **[nginx][nginx-url]** ที่มีความยืดหยุ่นในการจัดการระบบแคช
