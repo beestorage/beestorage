@@ -33,6 +33,7 @@ services:
     volumes:
       - database/router/db:/data/db
       - database/router/configdb:/data/configdb
+      - init_mongodb:/data/init_mongodb
     command: sh -c 'su --command "mongos --configdb configserver/11.0.0.164:27019 --port 27081"'
     deploy:
       mode: replicated
