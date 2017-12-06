@@ -71,4 +71,4 @@ services:
       replicas: 1
       placement:
         constraints:
-          - node.labels.mongo.role == shard1n1
+          - node.labels.mongo.role == data1
