@@ -40,7 +40,8 @@ services:
       replicas: 1
       placement:
         constraints:
-          - node.labels.mongo.role == router1
+          - node.labels.mongo.role == router1     #docker node update --label-add mongo.role=router1 [hostname]
+                                                #Ex. 'docker node update --label-add mongo.role=router1 FAARMIS-LOG'
     depends_on:
       - configdb_r1s1
       - datadb_r1s1
