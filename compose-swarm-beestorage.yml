@@ -73,3 +73,18 @@ services:
       placement:
         constraints:
           - node.labels.mongo.role == data1
+
+
+  datadb_r2s1:
+    image: mongo:3.4
+    volumes:
+      - /tmp/max/beestorage-swarm/database/db:/data/db
+    ports:
+      - "27020:27020"
+    command: mongod --noprealloc --replSet dataGroup2 --shardsvr --port 27020
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.labels.mongo.role == frontend
