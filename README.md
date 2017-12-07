@@ -84,7 +84,7 @@ $ sudo docker stack deploy -c compose-swarm-beestorage.yml beestorage
 หรือสามารถทดสอบด้วย [**postman**][postman-url] ก็ได้
 
 ---
-### การ Scale เพิ่มเครื่อง เพิ่มความจุ  
+### การ Scale เพิ่มเครื่อง เพิ่มความจุ เพิ่มความเร็ว  
 บทความส่วนี้ จะดีมากถ้าผู้ใช้ เป็น docker อยู่แล้ว
 1. เพิ่ม worker node ใหม่ อย่าลืมแป๊ะ role ด้วยนะครับ ในที่นี้เราจะใช้ Role `data2`
   - หลังจากเพิ่ม worker node ใหม่ทำการแป๊ะ Role ให้เรียบร้อย  ในที่นี้ใช้ชื่อว่า `data2`
