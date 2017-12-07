@@ -71,3 +71,15 @@ services:
       placement:
         constraints:
           - node.labels.mongo.role == data1             #ชื่อ Role
+
+  datadb_r2s1:     #เปลี่ยนชื่อจาก datadb_r1s1 เป็น datadb_r2s1
+    image: mongo:3.4
+    volumes:
+      - /mnt/beestorage-swarm/database/db:/data/db database
+    command: mongod --noprealloc --replSet dataGroup2 --shardsvr --port 27020     #แก้ dataGroup1 เป็น dataGroup2
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.labels.mongo.role == data2             #แก้ Role data1 เป็น data2

@@ -13,17 +13,17 @@
 
 ---
 
-##### จำเป็นต้องใช้ขั้นต่ำ 2 เครื่องใช้ Role ดังนี้
+##### จำเป็นต้องใช้ขั้นต่ำ 2 เครื่องแป๊ะ Role ดังนี้
 
-|  เครื่อง     | ชื่อ Role     | หมายเหตุ |
-|:---:|:---:|:---|
-| เครื่องแรก       | frontend       | เป็น API การใช้งานจะเชื่อมผ่านเครื่องนี้ |
-| เครื่องสอง   |  data1 | เครื่อง Database|  
+|  เครื่อง     | ชื่อ Role     | หมายเหตุ | Dev note. |
+|:---:|:---:|:---|:---|
+| เครื่องแรก       | frontend       | เป็น API การใช้งานจะเชื่อมผ่านเครื่องนี้ | ในที่นี้ใช้ "manager node" `docker swarm init` |
+| เครื่องสอง   |  data1 | เครื่อง Database| ในที่นี้ใช้ "worker node" `docker swarm join ....` |
 
   - **มีรูปแบบการใช้งานคำสั่ง**
   ```
-  $ sudo docker node update --label-add mongo.role=frontend hostname_เครื่องแรก
-  $ sudo docker node update --label-add mongo.role=data1 hostname_เครื่องสอง
+  $ sudo docker node update --label-add mongo.role=frontend **hostname_เครื่องแรก**
+  $ sudo docker node update --label-add mongo.role=data1 **hostname_เครื่องสอง**
   ```
   - **ตัวอย่าง**
   ```
@@ -39,8 +39,14 @@
 ---
 ### Clone และติดตั้งด้วยคำสั่ง
 ให้เรา Clone โปรเจคมาแล้วให้ทำการ Deploy ด้วยคำสั่งด้านล่าง  
+
+**จำเป็นต้อง clone source ไว้ทุกเครื่อง โดยเราจะ clone ไว้ที่ /opt/**
+```
+$ sudo git clone https://github.com/beestorage/beestorage-swarm.git /opt/
+```
 >สำหรับการใช้งานครั้งแรก รอระบบทำการ กำหนดค่าเริ่มต้นประมาณ 1 นาที
 
+**คำสั่ง Deploy จะสั่งการทำงานที่เครื่อง manager node เท่านั้นในตรงนี้จะเป็นเครื่อง frontend ด้วคำสั่ง**
 ```
 $ sudo docker stack deploy -c compose-swarm-beestorage.yml beestorage
 ```
@@ -78,6 +84,75 @@ $ sudo docker stack deploy -c compose-swarm-beestorage.yml beestorage
 หรือสามารถทดสอบด้วย [**postman**][postman-url] ก็ได้
 
 ---
+### การ Scale เพิ่มเครื่อง เพิ่มความจุ  
+บทความส่วนี้ จะดีมากถ้าผู้ใช้ เป็น docker อยู่แล้ว
+1. เพิ่ม worker node ใหม่ และแป๊ะ role
+  - หลังจากเพิ่ม worker node ใหม่แล้วทำการแป๊ะ Role ให้เรียบร้อย  ในที่นี้ใช้ชื่อว่า `data2`
+  ```
+  $ sudo docker node update --label-add mongo.role=data2 beedb2
+  ```
+2. เพิ่มเครื่องใหม่ใน compose-swarm-beestorage.yml ในส่วนท้ายของไฟล์
+  - เพิ่มส่วนท้ายไฟล์ตามนี้ ดูตัวอย่างไฟล์ที่แก้เสร็จแล้วได้ใน `example\scale_out\compose-swarm-beestorage.yml`
+  ```
+  datadb_r2s1:     #เปลี่ยนชื่อจาก datadb_r1s1 เป็น datadb_r2s1
+    image: mongo:3.4
+    volumes:
+      - /mnt/beestorage-swarm/database/db:/data/db database
+    command: mongod --noprealloc --replSet dataGroup2 --shardsvr --port 27020     #แก้ dataGroup1 เป็น dataGroup2
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.labels.mongo.role == data2             #แก้ Role data1 เป็น data2
+  ```
+  - แล้ว deploy ซ้ำในชื่อ stack เดิมจะเป็นการ update ด้วยคำสั่ง
+  ```
+  $ sudo docker stack deploy -c compose-swarm-beestorage.yml beestorage
+  ```
+3. config mongoDB ตัวใหม่
+  - ที่เครื่อง manager node เข้าไปที่ shell ของ beestorage_mongo_router ให้ใช้ `sudo docker ps` ดู    ด้วยคำสั่ง
+  ```
+  $ sudo docker exec -it beestorage_mongo_router.1.5li4j9iytbc6qypv63y04j3x1 mongo --host datadb_r2s1 --port 27020
+  ```
+
+  - คัดลอกข้อมูลตามนี้ลงไป
+  ```
+  rs.initiate(
+  {
+    "_id": "dataGroup2",
+    "members": [
+      {
+        "_id": 0,
+        "host": "datadb_r2s1:27020",
+        "priority": 100
+      }
+    ]
+  }
+  )
+  ```
+  กด Enter จะขึ้นว่า OK  
+  และ ตามด้วย `exit` ออกจาก shell
+
+4. บอก mongo router ว่ามีเครื่องใหม่มาแล้วนะ ที่เครื่อง manager node เข้าไปที่ shell ของ beestorage_mongo_router ให้ใช้ `sudo docker ps` ดู
+  ```
+  $ sudo docker exec -it beestorage_mongo_router.1.5li4j9iytbc6qypv63y04j3x1 mongo --host mongo_router --port 27081
+  ```
+  ใส่คำสั่งตามนี้ลงไป
+  ```
+  mongo> use picture
+  mongo> sh.addShard( "dataGroup2/datadb_r2s1:27020")
+  ```
+  กด Enter จะขึ้นว่า OK  
+  และ ตามด้วย `exit` ออกจาก shell เสร็จสิ้น
+
+---
+
+
+
+
+
+
 [**สามารถอ่านเพิ่มเติมได้ใน Wiki คลิก**][wiki-url]
 
 
@@ -110,9 +185,6 @@ $ sudo docker stack deploy -c compose-swarm-beestorage.yml beestorage
 [![NECTEC](http://www.nectec.or.th/themes/nectec/img/logo.png)](https://www.nectec.or.th)
 
 
-
-
-Use front end tcp/9000
 
 
 [postman-url]: https://www.getpostman.com/
