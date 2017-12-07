@@ -34,7 +34,7 @@ services:
       - /mnt/beestorage-swarm/database/router/db:/data/db
       - /mnt/beestorage-swarm/database/router/configdb:/data/configdb
       - /mnt/beestorage-swarm/init_mongodb:/data/init_mongodb
-    command: sh -c 'sleep 5 && su --command "sh /data/init_mongodb/init.sh &" && sleep 5 && su --command "mongos --configdb configserver/config1:27019 --port 27081"'
+    command: sh -c 'sleep 60 && su --command "sh /data/init_mongodb/init.sh &" && sleep 5 && su --command "mongos --configdb configserver/config1:27019 --port 27081"'
     deploy:
       mode: replicated
       replicas: 1
