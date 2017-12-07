@@ -60,16 +60,14 @@ services:
         constraints:
           - node.labels.mongo.role == frontend
 
-  datadb_r1s1:
+  datadb_r1s1:     #ชื่อ crontrainer
     image: mongo:3.4
     volumes:
-      - /mnt/beestorage-swarm/database/db:/data/db
-    ports:
-      - "27020:27020"
-    command: mongod --noprealloc --replSet dataGroup1 --shardsvr --port 27020
+      - /mnt/beestorage-swarm/database/db:/data/db          #ที่เก็บ database
+    command: mongod --noprealloc --replSet dataGroup1 --shardsvr --port 27020     #คำสั่งการทำงาน mongoDB
     deploy:
       mode: replicated
       replicas: 1
       placement:
         constraints:
-          - node.labels.mongo.role == data1
+          - node.labels.mongo.role == data1             #ชื่อ Role
