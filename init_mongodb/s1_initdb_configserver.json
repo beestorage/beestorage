@@ -4,7 +4,7 @@ rs.initiate({
   "members": [
     {
       "_id": 0,
-      "host": "config1:27019"
+      "host": "configdb_r1s1:27019"
     }
   ]
 })
