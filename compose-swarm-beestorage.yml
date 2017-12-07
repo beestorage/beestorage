@@ -69,6 +69,6 @@ services:
     deploy:
       mode: replicated
       replicas: 1
-      #placement:
-      #  constraints:
-      #    - node.labels.mongo.role == data1
+      placement:
+        constraints:
+          - node.labels.mongo.role == data1
