@@ -86,8 +86,8 @@ $ sudo docker stack deploy -c compose-swarm-beestorage.yml beestorage
 ---
 ### การ Scale เพิ่มเครื่อง เพิ่มความจุ  
 บทความส่วนี้ จะดีมากถ้าผู้ใช้ เป็น docker อยู่แล้ว
-1. เพิ่ม worker node ใหม่ และแป๊ะ role
-  - หลังจากเพิ่ม worker node ใหม่แล้วทำการแป๊ะ Role ให้เรียบร้อย  ในที่นี้ใช้ชื่อว่า `data2`
+1. เพิ่ม worker node ใหม่ อย่าลืมแป๊ะ role ด้วยนะครับ ในที่นี้เราจะใช้ Role `data2`
+  - หลังจากเพิ่ม worker node ใหม่ทำการแป๊ะ Role ให้เรียบร้อย  ในที่นี้ใช้ชื่อว่า `data2`
   ```
   $ sudo docker node update --label-add mongo.role=data2 beedb2
   ```
@@ -106,12 +106,12 @@ $ sudo docker stack deploy -c compose-swarm-beestorage.yml beestorage
         constraints:
           - node.labels.mongo.role == data2             #แก้ Role data1 เป็น data2
   ```
-  - แล้ว deploy ซ้ำในชื่อ stack เดิมจะเป็นการ update ด้วยคำสั่ง
+  - แล้ว deploy ซ้ำในชื่อ stack เดิมจะเป็นการ update swarm ด้วยคำสั่งด้านล่างนี้
   ```
   $ sudo docker stack deploy -c compose-swarm-beestorage.yml beestorage
   ```
 3. config mongoDB ตัวใหม่
-  - ที่เครื่อง manager node เข้าไปที่ shell ของ beestorage_mongo_router ให้ใช้ `sudo docker ps` ดู    ด้วยคำสั่ง
+  - ที่เครื่อง manager node เข้าไปที่ shell ของ beestorage_mongo_router ให้ใช้ `sudo docker ps` ดู Name ก่อนโดยจะขึ้นต้นด้วย beestorage_mongo_router
   ```
   $ sudo docker exec -it beestorage_mongo_router.1.5li4j9iytbc6qypv63y04j3x1 mongo --host datadb_r2s1 --port 27020
   ```
