@@ -141,7 +141,7 @@ $ sudo docker stack deploy -c compose-swarm-beestorage.yml beestorage
   ใส่คำสั่งตามนี้ลงไป
   ```
   mongo> use picture
-  mongo> sh.addShard( "dataGroup2/datadb_r2s1:27020")
+  mongo> sh.addShard( "dataGroup2/datadb_r1s2:27020")
   ```
   กด Enter จะขึ้นว่า OK  
   และ ตามด้วย `exit` ออกจาก shell เสร็จสิ้น
