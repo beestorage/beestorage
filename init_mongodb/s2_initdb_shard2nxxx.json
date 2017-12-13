@@ -4,7 +4,7 @@ rs.initiate(
   "members": [
     {
       "_id": 0,
-      "host": "datadb_r2s1:27020",
+      "host": "datadb_r1s2:27020",
       "priority": 100
     }
   ]

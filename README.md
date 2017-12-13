@@ -80,11 +80,11 @@ $ sudo docker stack deploy -c compose-swarm-beestorage.yml beestorage
 
   2017-12-07 11:40:11 (69.0 MB/s) - ‘testdownload.jpg’ saved [265284/265284]
   ```
-
 หรือสามารถทดสอบด้วย [**postman**][postman-url] ก็ได้
 
+## [การใช้งานด้วย Library][thumbor-library-url]
 ---
-### การ Scale เพิ่มเครื่อง เพิ่มความจุ  
+### การ Scale เพิ่มเครื่อง เพิ่มความจุ เพิ่มความเร็ว  
 บทความส่วนี้ จะดีมากถ้าผู้ใช้ เป็น docker อยู่แล้ว
 1. เพิ่ม worker node ใหม่ อย่าลืมแป๊ะ role ด้วยนะครับ ในที่นี้เราจะใช้ Role `data2`
   - หลังจากเพิ่ม worker node ใหม่ทำการแป๊ะ Role ให้เรียบร้อย  ในที่นี้ใช้ชื่อว่า `data2`
@@ -94,7 +94,7 @@ $ sudo docker stack deploy -c compose-swarm-beestorage.yml beestorage
 2. เพิ่มเครื่องใหม่ใน compose-swarm-beestorage.yml ในส่วนท้ายของไฟล์
   - เพิ่มส่วนท้ายไฟล์ตามนี้ ดูตัวอย่างไฟล์ที่แก้เสร็จแล้วได้ใน `example\scale_out\compose-swarm-beestorage.yml`
   ```
-  datadb_r2s1:     #เปลี่ยนชื่อจาก datadb_r1s1 เป็น datadb_r2s1
+  datadb_r1s2:     #เปลี่ยนชื่อจาก datadb_r1s1 เป็น datadb_r1s2
     image: mongo:3.4
     volumes:
       - /mnt/beestorage-swarm/database/db:/data/db database
@@ -113,7 +113,7 @@ $ sudo docker stack deploy -c compose-swarm-beestorage.yml beestorage
 3. config mongoDB ตัวใหม่
   - ที่เครื่อง manager node เข้าไปที่ shell ของ beestorage_mongo_router ให้ใช้ `sudo docker ps` ดู Name ก่อนโดยจะขึ้นต้นด้วย beestorage_mongo_router
   ```
-  $ sudo docker exec -it beestorage_mongo_router.1.5li4j9iytbc6qypv63y04j3x1 mongo --host datadb_r2s1 --port 27020
+  $ sudo docker exec -it beestorage_mongo_router.1.5li4j9iytbc6qypv63y04j3x1 mongo --host datadb_r1s2 --port 27020
   ```
 
   - คัดลอกข้อมูลตามนี้ลงไป
@@ -124,7 +124,7 @@ $ sudo docker stack deploy -c compose-swarm-beestorage.yml beestorage
     "members": [
       {
         "_id": 0,
-        "host": "datadb_r2s1:27020",
+        "host": "datadb_r1s2:27020",
         "priority": 100
       }
     ]
@@ -147,11 +147,6 @@ $ sudo docker stack deploy -c compose-swarm-beestorage.yml beestorage
   และ ตามด้วย `exit` ออกจาก shell เสร็จสิ้น
 
 ---
-
-
-
-
-
 
 [**สามารถอ่านเพิ่มเติมได้ใน Wiki คลิก**][wiki-url]
 
@@ -198,5 +193,6 @@ $ sudo docker stack deploy -c compose-swarm-beestorage.yml beestorage
 [docker-install-url]: https://docs.docker.com/engine/installation/
 [docker-swarm-url]: https://docs.docker.com/engine/swarm/swarm-tutorial/
 [docker-machine-url]: https://docs.docker.com/machine/get-started/#create-a-machine
-[wiki-url]: https://github.com/beestorage/beestorage-swarm/wiki
+[wiki-url]: https://beestorage.github.io/
+
 [mongo-label-add-url]: https://docs.docker.com/engine/swarm/manage-nodes/#add-or-remove-label-metadata
