@@ -72,7 +72,7 @@ services:
         constraints:
           - node.labels.mongo.role == data1             #ชื่อ Role
 
-  datadb_r2s1:     #เปลี่ยนชื่อจาก datadb_r1s1 เป็น datadb_r2s1
+  datadb_r1s2:     #เปลี่ยนชื่อจาก datadb_r1s1 เป็น datadb_r1s2
     image: mongo:3.4
     volumes:
       - /mnt/beestorage-swarm/database/db:/data/db database
