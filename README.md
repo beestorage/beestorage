@@ -80,9 +80,9 @@ $ sudo docker stack deploy -c compose-swarm-beestorage.yml beestorage
 
   2017-12-07 11:40:11 (69.0 MB/s) - ‘testdownload.jpg’ saved [265284/265284]
   ```
-
 หรือสามารถทดสอบด้วย [**postman**][postman-url] ก็ได้
 
+## [การใช้งานด้วย Library][thumbor-library-url]
 ---
 ### การ Scale เพิ่มเครื่อง เพิ่มความจุ เพิ่มความเร็ว  
 บทความส่วนี้ จะดีมากถ้าผู้ใช้ เป็น docker อยู่แล้ว
@@ -147,11 +147,6 @@ $ sudo docker stack deploy -c compose-swarm-beestorage.yml beestorage
   และ ตามด้วย `exit` ออกจาก shell เสร็จสิ้น
 
 ---
-
-
-
-
-
 
 [**สามารถอ่านเพิ่มเติมได้ใน Wiki คลิก**][wiki-url]
 
