@@ -42,7 +42,7 @@
 
 **จำเป็นต้อง clone source ไว้ทุกเครื่อง โดยเราจะ clone ไว้ที่ /srv/**
 ```
-$ sudo git clone https://github.com/beestorage/beestorage-swarm.git /srv/
+$ sudo git clone https://github.com/beestorage/beestorage-swarm.git /srv/beestorage-swarm
 ```
 >สำหรับการใช้งานครั้งแรก รอระบบทำการ กำหนดค่าเริ่มต้นประมาณ 1 นาที
 
