@@ -40,9 +40,9 @@
 ### Clone และติดตั้งด้วยคำสั่ง
 ให้เรา Clone โปรเจคมาแล้วให้ทำการ Deploy ด้วยคำสั่งด้านล่าง  
 
-**จำเป็นต้อง clone source ไว้ทุกเครื่อง โดยเราจะ clone ไว้ที่ /opt/**
+**จำเป็นต้อง clone source ไว้ทุกเครื่อง โดยเราจะ clone ไว้ที่ /srv/**
 ```
-$ sudo git clone https://github.com/beestorage/beestorage-swarm.git /opt/
+$ sudo git clone https://github.com/beestorage/beestorage-swarm.git /srv/
 ```
 >สำหรับการใช้งานครั้งแรก รอระบบทำการ กำหนดค่าเริ่มต้นประมาณ 1 นาที
 
