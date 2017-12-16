@@ -15,25 +15,63 @@
 - ระบบทั้งหมดอยู่บน **Docker Swarm** ติดตั้งจัดการได้ง่ายเพียงไม่กี่บรรทัด
 ---
 
-### สเต็ปการติดตั้งแบ่งเป็นข้อๆ ตามลำดับดังนี้
-1. **กำหนดสภาวะแวดล้อมของระบบ**
-2. **ติดตั้งระบบ**
+### การติดตั้งแบ่งเป็นข้อๆ ตามลำดับดังนี้
+1. **Clone sorce code จาก github**
+2. **กำหนดสภาวะแวดล้อมของระบบ**
+3. **ติดตั้งระบบ**
 
 ---
 
-## 1. กำหนดสภาวะแวดล้อมของระบบ
-#### เราจะแบ่งการตั้งค่า สภาวะแวดล้อมของระบบ ออกเป็นข้อๆ ดังนี้  
-** 1.1 การตั้งค่า swarm**  
-** 1.2 การแป๊ะชื่ออ้างอิง หรือ label ให้กับ swarm node**
+### 1. Clone sorce code จาก github
+#### ทุกเครื่องที่จะทำงานในระบบ BeeStorage จำเป็นต้อง setup ระบบก่อน โดยทำการ clone sorce code จาก github และสั่งการทำงานของ setup_env.sh
 
-#### ในระบบ BeeStorage จำเป็นต้องใช้ ขั้นต่ำ 2 เครื่อง เราจะกำหนดชื่อให้ทั้ง 2 เครื่อง ดังนี้ กำหนดเพียงครั้งเดียว แล้วหลังจากนั้นเราจะใช้ชื่อใหม่ในการอ้างถึง แต่ละเครื่อง
-> ชื่อที่กำหนดเป็นการอ้างถึงโดย docker เท่านั้น ไม่มีผลกับ hostname เดิมที่เป็นชื่อเครื่องจริงๆ ของเครื่องที่ติดตั้ง
+```
+$ sudo git clone https://github.com/beestorage/beestorage.git
 
-|  hostname     | ให้ใช้ชื่อ     | มีหน้าที่หลักเป็น |
+
+
+
+
+
+sudo sh /beestorage/setup_env.sh
+```
+
+---
+
+### 2. กำหนดสภาวะแวดล้อมของระบบ เราจะแบ่งการตั้งค่า ออกเป็นข้อๆ ดังนี้  
+ **2.1 การตั้งค่า swarm**  
+ **2.2 การแป๊ะชื่ออ้างอิง หรือ label ให้กับ swarm node**
+
+---
+
+### 2.1 การตั้งค่า swarm
+
+
+#### ที่เครื่อง **ubuntu_org1** ให้ใช้คำสั่ง `$ sudo docker swarm init`
+```
+ubuntu_org1>$ sudo docker swarm init
+-0-0-0-=0=-0=-0
+```
+
+#### ให้ copy คำสั่งที่ใช้สำหรับการเชื่อมต่อ มาใส่ที่เครื่อง coreosex3
+```
+coreosex3>$ sudo docker swarm join .. . .. .
+0131030130154
+```
+---
+
+### 2.2 การแป๊ะ label ให้ทำที่เครื่อง ubuntu_org1
+> ชื่อที่กำหนดเป็นการอ้างถึงโดย docker มีเพื่อให้ง่ายต่อการ ตั้งค่าระบบ
+
+|  hostname     | ให้ใช้ชื่อ     | คำอธิบาย |
 |:---:|:---:|:---|
-| เครื่องแรก       | frontend       | เป็น BeeStorage API |
-| เครื่องสอง   |  data1 | เครื่อง Database|
+| ubuntu_org1       | **frontend**       | **Swarm manager node ทำงานเป็น BeeStorage ** |
+| coreosex3   |  **data1** | **Swarm worker node ทำงานเป็นเครื่อง Database** |
 
+> | Swarm node คืออะไร     | คำอธิบาย     |
+| :------------- | :------------- |
+| **manager node**       | คือเครื่องที่ทำหน้าที่ในการแบ่งงานให้กับเครื่องที่เป็น worker node โดยปรกติ manager node จะทำหน้าที่เป็นทั้ง mananger และ worker ในเวลาเดียวกัน       |
+| **worker node** | คอยรับงานจาก manager node |
 
 #### Software ที่จำเป็น
 
@@ -42,42 +80,25 @@
 | docker       | version 13.1 ขึ้นไป       |
 | git   | version ล่าสุด  |
 
-</br>
-##### การแป๊ะป้ายหรือ label ให้ทั้ง 2 เครื่อง
-
-
-
-  - **มีรูปแบบการใช้งานคำสั่ง**
+  - **การแป๊ะ label ในส่วนของ hostname ubuntu_org1 และ hostname coreosex3 ปรับเปลี่ยนตามชื่อเครื่องจริง นอกจากนั้นก๊อปแป๊ะได้เลย**
   ```
-  $ sudo docker node update --label-add mongo.role=frontend **hostname_เครื่องแรก**
-  $ sudo docker node update --label-add mongo.role=data1 **hostname_เครื่องสอง**
-  ```
-  - **ตัวอย่าง**
-  ```
-  $ sudo docker node update --label-add mongo.role=frontend beeserver
-  $ sudo docker node update --label-add mongo.role=data1 beedb1
+  ubuntu_org1>$ sudo docker node update --label-add mongo.role=frontend ubuntu_org1
+  ubuntu_org1>$ sudo docker node update --label-add mongo.role=data1 coreosex3
   ```
 
 [**อ่านเพิ่มเติม คลิก**][mongo-label-add-url]
 
+---
+### สั่งเริ่มต้นการทำงาน beestorage
+**คำสั่ง Deploy จะสั่งการทำงานที่เครื่อง ubuntu_org1 ที่เป็น manager node ด้วคำสั่ง**
+```
+ubuntu_org1>$ sudo docker stack deploy -c compose-swarm-beestorage.yml beestorage
+```
 
-
+**สำหรับการใช้งานหลัง Deploy เสร็จต้องรอ 1 นาที โดย 1 นาทีนี้ระบบจะทำการตรวจสอบ database โดยอัตโนมัติ**
 
 ---
-### Clone และติดตั้งด้วยคำสั่ง
-ให้เรา Clone โปรเจคมาแล้วให้ทำการ Deploy ด้วยคำสั่งด้านล่าง  
 
-**จำเป็นต้อง clone source ไว้ทุกเครื่อง โดยเราจะ clone ไว้ที่ /srv/**
-```
-$ sudo git clone https://github.com/beestorage/beestorage-swarm.git /srv/beestorage-swarm
-```
->สำหรับการใช้งานครั้งแรก รอระบบทำการ กำหนดค่าเริ่มต้นประมาณ 1 นาที
-
-**คำสั่ง Deploy จะสั่งการทำงานที่เครื่อง manager node เท่านั้นในตรงนี้จะเป็นเครื่อง frontend ด้วคำสั่ง**
-```
-$ sudo docker stack deploy -c compose-swarm-beestorage.yml beestorage
-```
----
 ### ลองใช้งานผ่าน curl และ wget
 
 - ทดสอบ upload รูปผ่าน curl ด้วยคำสั่ง
