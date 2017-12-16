@@ -1,3 +1,4 @@
+# BeeStorage
 ### ระบบคุณเคยเจอปัญหาแบบนี้หรือไม่
 * **ระบบฝากภาพ ยากจังไม่เอาแล้ว**  
 * **เซงไม่มี api ไม่มี Library พัฒนาเองทำเองทุกอย่าง**  
@@ -25,7 +26,7 @@
 ### 1. Clone sorce code จาก github
 #### ทุกเครื่องที่จะทำงานในระบบ BeeStorage จำเป็นต้อง setup ระบบก่อน โดยทำการ clone sorce code จาก github และสั่งการทำงานของ setup_env.sh
 
-```
+```shell
 $ sudo git clone https://github.com/beestorage/beestorage.git
 
 
@@ -48,13 +49,15 @@ sudo sh /beestorage/setup_env.sh
 
 
 #### ที่เครื่อง **ubuntu_org1** ให้ใช้คำสั่ง `$ sudo docker swarm init`
-```
+
+```shell
 ubuntu_org1>$ sudo docker swarm init
 -0-0-0-=0=-0=-0
 ```
 
 #### ให้ copy คำสั่งที่ใช้สำหรับการเชื่อมต่อ มาใส่ที่เครื่อง coreosex3
-```
+
+```shell
 coreosex3>$ sudo docker swarm join .. . .. .
 0131030130154
 ```
@@ -81,7 +84,8 @@ coreosex3>$ sudo docker swarm join .. . .. .
 | git   | version ล่าสุด  |
 
   - **การแป๊ะ label ในส่วนของ hostname ubuntu_org1 และ hostname coreosex3 ปรับเปลี่ยนตามชื่อเครื่องจริง นอกจากนั้นก๊อปแป๊ะได้เลย**
-  ```
+
+  ```shell
   ubuntu_org1>$ sudo docker node update --label-add mongo.role=frontend ubuntu_org1
   ubuntu_org1>$ sudo docker node update --label-add mongo.role=data1 coreosex3
   ```
@@ -91,7 +95,8 @@ coreosex3>$ sudo docker swarm join .. . .. .
 ---
 ### สั่งเริ่มต้นการทำงาน beestorage
 **คำสั่ง Deploy จะสั่งการทำงานที่เครื่อง ubuntu_org1 ที่เป็น manager node ด้วคำสั่ง**
-```
+
+```shell
 ubuntu_org1>$ sudo docker stack deploy -c compose-swarm-beestorage.yml beestorage
 ```
 
@@ -103,7 +108,7 @@ ubuntu_org1>$ sudo docker stack deploy -c compose-swarm-beestorage.yml beestorag
 
 - ทดสอบ upload รูปผ่าน curl ด้วยคำสั่ง
 
-  ```
+  ```shell
   curl -i -H "Content-Type: image/jpeg" -XPOST http://11.0.0.164:9000/image --data-binary "@/mnt/img.jpg"                                               HTTP/1.1 100 (Continue)
 
   HTTP/1.1 201 Created
@@ -116,7 +121,7 @@ ubuntu_org1>$ sudo docker stack deploy -c compose-swarm-beestorage.yml beestorag
 
 - สามารถทดสอบ download ด้วย wget
 
-  ```
+  ```shell
   wget http://11.0.0.164:9000/image/c4ba387492864969b1e46591698cbc1b -O testdownload.jpg
   --2017-12-07 11:40:11--  http://11.0.0.164:9000/image/c4ba387492864969b1e46591698cbc1b
   Connecting to 11.0.0.164:9000... connected.
