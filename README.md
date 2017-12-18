@@ -26,18 +26,31 @@
 
 ### 1. Clone sorce code จาก github
 #### ทุกเครื่องที่จะทำงานในระบบ BeeStorage จำเป็นต้อง setup ระบบก่อน โดยทำการ clone sorce code จาก github และสั่งการทำงานของ setup_env.sh
-
+ให้ใช้คำสั่ง
 ```shell
-$ sudo git clone https://github.com/beestorage/beestorage.git
-
-
-
-
-
-
-sudo sh /beestorage/setup_env.sh
+$ sudo git clone https://github.com/beestorage/beestorage-swarm.git /srv/beestorage-swarm/
 ```
 
+```shell
+$ sudo git clone https://github.com/beestorage/beestorage-swarm.git /srv/beestorage-swarm/
+Cloning into '/srv/beestorage-swarm'...
+remote: Counting objects: 660, done.
+remote: Compressing objects: 100% (111/111), done.
+remote: Total 660 (delta 90), reused 106 (delta 46), pack-reused 500
+Receiving objects: 100% (660/660), 185.03 KiB | 0 bytes/s, done.
+Resolving deltas: 100% (388/388), done.
+Checking connectivity... done.
+
+```
+และใช้คำสั่ง
+```shell
+$ sudo sh /beestorage/setup_env.sh
+```
+```shell
+$ sudo sh /beestorage/setup_env.sh
+Create directory envalopment....
+Finish create directory envalopment....
+```
 ---
 
 ### 2. กำหนดสภาวะแวดล้อมของระบบ เราจะแบ่งการตั้งค่า ออกเป็นข้อๆ ดังนี้  
@@ -53,14 +66,22 @@ sudo sh /beestorage/setup_env.sh
 
 ```shell
 ubuntu_org1>$ sudo docker swarm init
--0-0-0-=0=-0=-0
+
+Swarm initialized: current node (ki9g3q6ibepqruvno33losn9s) is now a manager.
+
+To add a worker to this swarm, run the following command:
+
+  docker swarm join --token SWMTKN-1-4o2nlv5aq8fqkr4fv0w1znz8ykivukyi173xeuu8medzya3j0z-0u7e64mjlb67qup7oie7eb1q5 11.0.0.164:2377  
+
+To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.                 
 ```
 
 #### ให้ copy คำสั่งที่ใช้สำหรับการเชื่อมต่อ มาใส่ที่เครื่อง coreosex3
 
 ```shell
-coreosex3>$ sudo docker swarm join .. . .. .
-0131030130154
+coreosex3>$ sudo docker swarm join --token SWMTKN-1-4o2nlv5aq8fqkr4fv0w1znz8ykivukyi173xeuu8medzya3j0z-0u7e64mjlb67qup7oie7eb1q5 11.0.0.164:2377
+This node joined a swarm as a worker.
+
 ```
 
 ---
