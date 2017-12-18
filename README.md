@@ -14,6 +14,7 @@
 - ระบบการจัดเก็บไฟล์ หลังบ้านเป็น **[mongodb GridFS][mongo-gridfs-url]** ที่มีความสามารถเด่นเรื่องการ **สเกล** และความคง **ทนต่อระบบล่มได้สูง**
 สามารถ เพิ่มขนาดเพิ่มเครื่อง เวลาระบบโต ภายหลังได้
 - ระบบทั้งหมดอยู่บน **Docker Swarm** ติดตั้งจัดการได้ง่ายเพียงไม่กี่บรรทัด
+
 ---
 
 ### การติดตั้งแบ่งเป็นข้อๆ ตามลำดับดังนี้
@@ -61,8 +62,8 @@ ubuntu_org1>$ sudo docker swarm init
 coreosex3>$ sudo docker swarm join .. . .. .
 0131030130154
 ```
----
 
+---
 ### 2.2 การแป๊ะ label ให้ทำที่เครื่อง ubuntu_org1
 > ชื่อที่กำหนดเป็นการอ้างถึงโดย docker มีเพื่อให้ง่ายต่อการ ตั้งค่าระบบ
 
@@ -103,7 +104,6 @@ ubuntu_org1>$ sudo docker stack deploy -c compose-swarm-beestorage.yml beestorag
 **สำหรับการใช้งานหลัง Deploy เสร็จต้องรอ 1 นาที โดย 1 นาทีนี้ระบบจะทำการตรวจสอบ database โดยอัตโนมัติ**
 
 ---
-
 ### ลองใช้งานผ่าน curl และ wget
 
 - ทดสอบ upload รูปผ่าน curl ด้วยคำสั่ง
@@ -136,6 +136,7 @@ ubuntu_org1>$ sudo docker stack deploy -c compose-swarm-beestorage.yml beestorag
 หรือสามารถทดสอบด้วย [**postman**][postman-url] ก็ได้
 
 ## [การใช้งานด้วย Library][thumbor-library-url]
+
 ---
 ### การ Scale เพิ่มเครื่อง เพิ่มความจุ เพิ่มความเร็ว  
 บทความส่วนี้ จะดีมากถ้าผู้ใช้ เป็น docker อยู่แล้ว
@@ -200,7 +201,6 @@ ubuntu_org1>$ sudo docker stack deploy -c compose-swarm-beestorage.yml beestorag
   และ ตามด้วย `exit` ออกจาก shell เสร็จสิ้น
 
 ---
-
 [**สามารถอ่านเพิ่มเติมได้ใน Wiki คลิก**][wiki-url]
 
 
