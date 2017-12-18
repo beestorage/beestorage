@@ -19,7 +19,7 @@
 ### การติดตั้งแบ่งเป็นข้อๆ ตามลำดับดังนี้
 1. **Clone sorce code จาก github**
 2. **กำหนดสภาวะแวดล้อมของระบบ**
-3. **ติดตั้งระบบ**
+3. **ติดตั้ง BeeStorage**
 
 ---
 
@@ -93,7 +93,7 @@ coreosex3>$ sudo docker swarm join .. . .. .
 [**อ่านเพิ่มเติม คลิก**][mongo-label-add-url]
 
 ---
-### สั่งเริ่มต้นการทำงาน beestorage
+### 3. ติดตั้ง BeeStorage
 **คำสั่ง Deploy จะสั่งการทำงานที่เครื่อง ubuntu_org1 ที่เป็น manager node ด้วคำสั่ง**
 
 ```shell
