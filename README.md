@@ -20,6 +20,7 @@
 1. **Clone sorce code จาก github**
 2. **กำหนดสภาวะแวดล้อมของระบบ**
 3. **ติดตั้ง BeeStorage**
+4. **การใช้งาน BeeStorage**
 
 ---
 
@@ -124,7 +125,7 @@ ubuntu_org1>$ sudo docker stack deploy -c compose-swarm-beestorage.yml beestorag
 **สำหรับการใช้งานหลัง Deploy เสร็จต้องรอ 1 นาที โดย 1 นาทีนี้ระบบจะทำการตรวจสอบ database โดยอัตโนมัติ**
 
 ---
-### ลองใช้งานผ่าน curl และ wget
+### 4. การใช้งาน BeeStorage
 
 - ทดสอบ upload รูปผ่าน curl ด้วยคำสั่ง
 
