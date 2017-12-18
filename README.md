@@ -145,7 +145,6 @@ ubuntu_org1>$ sudo docker stack deploy -c compose-swarm-beestorage.yml beestorag
   ```shell
   $ sudo docker node update --label-add mongo.role=data2 beedb2
   ```
-
 2. เพิ่มเครื่องใหม่ใน compose-swarm-beestorage.yml ในส่วนท้ายของไฟล์
   - เพิ่มส่วนท้ายไฟล์ตามนี้ ดูตัวอย่างไฟล์ที่แก้เสร็จแล้วได้ใน `example\scale_out\compose-swarm-beestorage.yml`
 
@@ -168,7 +167,6 @@ ubuntu_org1>$ sudo docker stack deploy -c compose-swarm-beestorage.yml beestorag
   ```shell
   $ sudo docker stack deploy -c compose-swarm-beestorage.yml beestorage
   ```
-
 3. config mongoDB ตัวใหม่
   - ที่เครื่อง manager node เข้าไปที่ shell ของ beestorage_mongo_router ให้ใช้ `sudo docker ps` ดู Name ก่อนโดยจะขึ้นต้นด้วย beestorage_mongo_router
 
@@ -195,7 +193,6 @@ ubuntu_org1>$ sudo docker stack deploy -c compose-swarm-beestorage.yml beestorag
 
   กด Enter จะขึ้นว่า OK  
   และ ตามด้วย `exit` ออกจาก shell
-
 4. บอก mongo router ว่ามีเครื่องใหม่มาแล้วนะ ที่เครื่อง manager node เข้าไปที่ shell ของ beestorage_mongo_router ให้ใช้ `sudo docker ps` ดู
 
   ```shell
