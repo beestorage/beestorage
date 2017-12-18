@@ -1,5 +1,5 @@
 # BeeStorage
-![BeeStorage](https://image.ibb.co/mNABpm/Bee_Storage_user_view.png)
+![BeeStorage](https://image.ibb.co/iT3es6/Bee_Storage_user_view.png)
 ### เคยเจอปัญหาเหล่านี้หรือไม่
 * **ระบบฝากภาพ ยากจังไม่เอาแล้ว**  
 * **เซงไม่มี api ไม่มี Library พัฒนาเองทำเองทุกอย่าง**  
