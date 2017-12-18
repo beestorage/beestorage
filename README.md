@@ -5,9 +5,8 @@
 * **Server เก็บภาพเต็มอีกแล้วซื้อ HDD เพิ่ม**  
 
 #### ปัญหาเหล่านี้จะหมดไปด้วย BeeStorage
-
 # BeeStorage ฝากรูป *ขจัดปัญหา*  
-
+## [**อ่านคู่มือฉบับเต็มได้ที่ Wiki คลิก**][wiki-url]
 ### สร้างขึ้นมาเพื่อตอบโจทย์สำหรับ นักพัฒนา  
 - **BeeStorage** ได้เลือก **[thumbor][thumbor-url]** เป็น front end มีความสามารถในการ **[process filter][thumbor-filter-url]** ผ่านการเรียก function ใน **[URL][thumbor-filter-url]** ได้ในตัว และยังมี **[library support หลายภาษา][thumbor-library-url]**  
 - ใช้ **[nginx][nginx-url]** ที่มีความยืดหยุ่นในการจัดการระบบแคช
@@ -91,7 +90,7 @@ coreosex3>$ sudo docker swarm join .. . .. .
   ubuntu_org1>$ sudo docker node update --label-add mongo.role=data1 coreosex3
   ```
 
-[**อ่านเพิ่มเติม คลิก**][mongo-label-add-url]
+[**ศึกษาเพิ่มเติมจากเอกสารของ docker**][mongo-label-add-url]
 
 ---
 ### 3. ติดตั้ง BeeStorage
@@ -133,7 +132,6 @@ ubuntu_org1>$ sudo docker stack deploy -c compose-swarm-beestorage.yml beestorag
 
   2017-12-07 11:40:11 (69.0 MB/s) - ‘testdownload.jpg’ saved [265284/265284]
   ```
-หรือสามารถทดสอบด้วย [**postman**][postman-url] ก็ได้
 
 ## [การใช้งานด้วย Library][thumbor-library-url]
 
@@ -201,8 +199,6 @@ ubuntu_org1>$ sudo docker stack deploy -c compose-swarm-beestorage.yml beestorag
   และ ตามด้วย `exit` ออกจาก shell เสร็จสิ้น
 
 ---
-[**สามารถอ่านเพิ่มเติมได้ใน Wiki คลิก**][wiki-url]
-
 
 ## License
 
