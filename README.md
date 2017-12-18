@@ -23,7 +23,14 @@
 4. **การใช้งาน BeeStorage**
 
 ---
+#### รูปแบบการใช้งาน
+**ตัวอย่างการใช้งานโดยกำหนดให้ BeeStorage ทำการ resize รูปภาพ เป็นขนาด 300x200**
 
+```URL
+http://BeeStorage-server/unsafe/300x200/smart/43f45345f3f2345432242343223fded
+```
+
+---
 ### 1. Clone sorce code จาก github
 #### ทุกเครื่องที่จะทำงานในระบบ BeeStorage จำเป็นต้อง setup ระบบก่อน โดยทำการ clone sorce code จาก github และสั่งการทำงานของ setup_env.sh
 ให้ใช้คำสั่ง
@@ -158,77 +165,11 @@ ubuntu_org1>$ sudo docker stack deploy -c compose-swarm-beestorage.yml beestorag
 ## [การใช้งานด้วย Library][thumbor-library-url]
 
 ---
-### การ Scale เพิ่มเครื่อง เพิ่มความจุ เพิ่มความเร็ว  
-บทความส่วนี้ จะดีมากถ้าผู้ใช้ เป็น docker อยู่แล้ว
-1. เพิ่ม worker node ใหม่ อย่าลืมแป๊ะ role ด้วยนะครับ ในที่นี้เราจะใช้ Role `data2`
-  - หลังจากเพิ่ม worker node ใหม่ทำการแป๊ะ Role ให้เรียบร้อย  ในที่นี้ใช้ชื่อว่า `data2`
-
-  ```shell
-  $ sudo docker node update --label-add mongo.role=data2 beedb2
-  ```
-2. เพิ่มเครื่องใหม่ใน compose-swarm-beestorage.yml ในส่วนท้ายของไฟล์
-  - เพิ่มส่วนท้ายไฟล์ตามนี้ ดูตัวอย่างไฟล์ที่แก้เสร็จแล้วได้ใน `example\scale_out\compose-swarm-beestorage.yml`
-
-  ```yml
-  datadb_r1s2:     #เปลี่ยนชื่อจาก datadb_r1s1 เป็น datadb_r1s2
-    image: mongo:3.4
-    volumes:
-      - /mnt/beestorage-swarm/database/db:/data/db database
-    command: mongod --noprealloc --replSet dataGroup2 --shardsvr --port 27020     #แก้ dataGroup1 เป็น dataGroup2
-    deploy:
-      mode: replicated
-      replicas: 1
-      placement:
-        constraints:
-          - node.labels.mongo.role == data2             #แก้ Role data1 เป็น data2
-  ```
-
-  - แล้ว deploy ซ้ำในชื่อ stack เดิมจะเป็นการ update swarm ด้วยคำสั่งด้านล่างนี้
-
-  ```shell
-  $ sudo docker stack deploy -c compose-swarm-beestorage.yml beestorage
-  ```
-3. config mongoDB ตัวใหม่
-  - ที่เครื่อง manager node เข้าไปที่ shell ของ beestorage_mongo_router ให้ใช้ `sudo docker ps` ดู Name ก่อนโดยจะขึ้นต้นด้วย beestorage_mongo_router
-
-  ```shell
-  $ sudo docker exec -it beestorage_mongo_router.1.5li4j9iytbc6qypv63y04j3x1 mongo --host datadb_r1s2 --port 27020
-  ```
-
-  - คัดลอกข้อมูลตามนี้ลงไป
-
-  ```json
-  rs.initiate(
-  {
-    "_id": "dataGroup2",
-    "members": [
-      {
-        "_id": 0,
-        "host": "datadb_r1s2:27020",
-        "priority": 100
-      }
-    ]
-  }
-  )
-  ```
-
-  กด Enter จะขึ้นว่า OK  
-  และ ตามด้วย `exit` ออกจาก shell
-4. บอก mongo router ว่ามีเครื่องใหม่มาแล้วนะ ที่เครื่อง manager node เข้าไปที่ shell ของ beestorage_mongo_router ให้ใช้ `sudo docker ps` ดู
-
-  ```shell
-  $ sudo docker exec -it beestorage_mongo_router.1.5li4j9iytbc6qypv63y04j3x1 mongo --host mongo_router --port 27081
-  ```
-
-  ใส่คำสั่งตามนี้ลงไป
-
-  ```shell
-  mongo> use picture
-  mongo> sh.addShard( "dataGroup2/datadb_r1s2:27020")
-  ```
-
-  กด Enter จะขึ้นว่า OK  
-  และ ตามด้วย `exit` ออกจาก shell เสร็จสิ้น
+#### อ่านต่อ
+- [**หน้าแรก Wiki**][home]
+- [**การ Setup BeeStorage**][beestorage-install]
+- [**การ Scale out เพิ่มความจุ**][scale-out]
+- [**การ Scale เพิ่ม Stable**][scale-stable]
 
 ---
 
@@ -262,7 +203,10 @@ ubuntu_org1>$ sudo docker stack deploy -c compose-swarm-beestorage.yml beestorag
 
 
 
-
+[home]: https://github.com/beestorage/beestorage/wiki
+[beestorage-install]: https://github.com/beestorage/beestorage/wiki/%E0%B8%81%E0%B8%B2%E0%B8%A3-Setup-BeeStorage
+[scale-out]: https://github.com/beestorage/beestorage/wiki/%E0%B8%81%E0%B8%B2%E0%B8%A3-Scale-Out
+[scale-stable]: https://github.com/beestorage/beestorage/wiki/%E0%B8%81%E0%B8%B2%E0%B8%A3-Scale-%E0%B9%80%E0%B8%9E%E0%B8%B4%E0%B9%88%E0%B8%A1-Stable
 [postman-url]: https://www.getpostman.com/
 [thumbor-url]: https://thumbor.readthedocs.io
 [thumbor-filter-url]: https://thumbor.readthedocs.io/en/latest/filters.html
