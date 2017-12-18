@@ -274,6 +274,6 @@ ubuntu_org1>$ sudo docker stack deploy -c compose-swarm-beestorage.yml beestorag
 [docker-install-url]: https://docs.docker.com/engine/installation/
 [docker-swarm-url]: https://docs.docker.com/engine/swarm/swarm-tutorial/
 [docker-machine-url]: https://docs.docker.com/machine/get-started/#create-a-machine
-[wiki-url]: https://beestorage.github.io/
+[wiki-url]: https://github.com/beestorage/beestorage/wiki
 
 [mongo-label-add-url]: https://docs.docker.com/engine/swarm/manage-nodes/#add-or-remove-label-metadata
