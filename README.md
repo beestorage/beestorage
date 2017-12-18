@@ -106,7 +106,7 @@ This node joined a swarm as a worker.
 | ubuntu_org1       | **frontend**       | **Swarm manager node ทำงานเป็น BeeStorage ** |
 | coreosex3   |  **data1** | **Swarm worker node ทำงานเป็นเครื่อง Database** |
 
-> | Swarm node คืออะไร     | คำอธิบาย     |
+| Swarm node คืออะไร     | คำอธิบาย     |
 | :------------- | :------------- |
 | **manager node**       | คือเครื่องที่ทำหน้าที่ในการแบ่งงานให้กับเครื่องที่เป็น worker node โดยปรกติ manager node จะทำหน้าที่เป็นทั้ง mananger และ worker ในเวลาเดียวกัน       |
 | **worker node** | คอยรับงานจาก manager node |
