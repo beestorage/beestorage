@@ -31,9 +31,9 @@ services:
     ports:
       - "27081:27081"
     volumes:
-      - /mnt/beestorage-swarm/database/router/db:/data/db
-      - /mnt/beestorage-swarm/database/router/configdb:/data/configdb
-      - /mnt/beestorage-swarm/init_mongodb:/data/init_mongodb
+      - /srv/beestorage-swarm/database/router/db:/data/db
+      - /srv/beestorage-swarm/database/router/configdb:/data/configdb
+      - /srv/beestorage-swarm/init_mongodb:/data/init_mongodb
     command: sh -c 'sleep 30 && su --command "sh /data/init_mongodb/init.sh &" && sleep 5 && su --command "mongos --configdb configserver/configdb_r1s1:27019 --port 27081"'
     deploy:
       mode: replicated
@@ -49,7 +49,7 @@ services:
   configdb_r1s1:
     image: mongo:3.4
     volumes:
-      - /mnt/beestorage-swarm/database/configdb:/data/configdb
+      - /srv/beestorage-swarm/database/configdb:/data/configdb
     ports:
       - "27019:27019"
     command: mongod --configsvr --smallfiles --replSet configserver --port 27019
@@ -63,7 +63,7 @@ services:
   datadb_r1s1:     #ชื่อ crontrainer
     image: mongo:3.4
     volumes:
-      - /mnt/beestorage-swarm/database/db:/data/db          #ที่เก็บ database
+      - /srv/beestorage-swarm/database/db:/data/db          #ที่เก็บ database
     command: mongod --noprealloc --replSet dataGroup1 --shardsvr --port 27020     #คำสั่งการทำงาน mongoDB
     deploy:
       mode: replicated
@@ -75,7 +75,7 @@ services:
   datadb_r1s2:     #เปลี่ยนชื่อจาก datadb_r1s1 เป็น datadb_r1s2
     image: mongo:3.4
     volumes:
-      - /mnt/beestorage-swarm/database/db:/data/db database
+      - /srv/beestorage-swarm/database/db:/data/db database
     command: mongod --noprealloc --replSet dataGroup2 --shardsvr --port 27020     #แก้ dataGroup1 เป็น dataGroup2
     deploy:
       mode: replicated
