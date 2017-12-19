@@ -15,7 +15,7 @@
 - ระบบทั้งหมดอยู่บน **Docker Swarm** ติดตั้งจัดการได้ง่ายเพียงไม่กี่บรรทัด
 
 ---
-> BeeStorage สามารถทดสอบ การทำงานโดยใช้เพียงเครื่องเดียวได้ โดยใช้ docker-compose
+> BeeStorage สามารถทดสอบ การทำงานโดยใช้เพียงเครื่องเดียวได้ โดยใช้ docker-compose ต้องสั่งทำงาน setup_env.sh ก่อน
 ```shell
 $ docker-compose.exe -f beestorage-local.yml up
 ```
