@@ -27,14 +27,10 @@ services:
 
 
   mongo_router:
-    image: mongo:3.4
+    build: .
     ports:
       - "27081:27081"
-    volumes:
-      - /srv/beestorage-swarm/database/router/db:/data/db
-      - /srv/beestorage-swarm/database/router/configdb:/data/configdb
-      - /srv/beestorage-swarm/init_mongodb:/data/init_mongodb
-    command: sh -c 'sleep 30 && su --command "sh /data/init_mongodb/init.sh &" && sleep 5 && su --command "mongos --configdb configserver/configdb_r1s1:27019 --port 27081"'
+    command: sh -c 'sleep 20 && su --command "sh /data/init_mongodb/init.sh &" && sleep 5 && su --command "mongos --configdb configserver/configdb_r1s1:27019 --port 27081"'
     deploy:
       mode: replicated
       replicas: 1
