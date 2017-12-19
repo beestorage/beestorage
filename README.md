@@ -14,17 +14,19 @@
 สามารถ เพิ่มขนาดเพิ่มเครื่อง เวลาระบบโต ภายหลังได้
 - ระบบทั้งหมดอยู่บน **Docker Swarm** ติดตั้งจัดการได้ง่ายเพียงไม่กี่บรรทัด
 
+---
+> BeeStorage สามารถทดสอบ การทำงานโดยใช้เพียงเครื่องเดียวได้ โดยใช้ docker-compose
+```shell
+$ docker-compose.exe -f beestorage-local.yml up
+```
+
 #### รูปแบบการใช้งานที่สะดวก
 **ตัวอย่างการใช้งานโดยกำหนดให้ BeeStorage ทำการ resize รูปภาพ เป็นขนาด 300x200**
 
 ```URL
 http://BeeStorage-server/unsafe/300x200/smart/43f45345f3f2345432242343223fded
 ```
----
-> BeeStorage สามารถทดสอบ การทำงานโดยใช้เพียงเครื่องเดียวได้ โดยใช้ docker-compose
-```shell
-$ docker-compose.exe -f beestorage-local.yml up
-```
+
 ---
 
 
