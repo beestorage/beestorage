@@ -1,5 +1,5 @@
 # BeeStorage
-![BeeStorage](https://image.ibb.co/iT3es6/Bee_Storage_user_view.png)
+![BeeStorage](https://image.ibb.co/bFaec6/Bee_Storage_user_view.png)
 ### เคยเจอปัญหาเหล่านี้หรือไม่
 * **ระบบฝากภาพ ยากจังไม่เอาแล้ว**  
 * **เซงไม่มี api ไม่มี Library พัฒนาเองทำเองทุกอย่าง**  
@@ -15,12 +15,11 @@
 - ระบบทั้งหมดอยู่บน **Docker Swarm** ติดตั้งจัดการได้ง่ายเพียงไม่กี่บรรทัด
 
 ### รูปแบบการใช้งานที่สะดวก
-**ตัวอย่างการใช้งานโดยกำหนดให้ BeeStorage ทำการ resize รูปภาพ เป็นขนาด 300x200**
+ตัวอย่างการใช้งานโดยกำหนดให้ BeeStorage ทำการ resize รูปภาพ เป็นขนาด 300x200
 
 ```URL
 http://BeeStorage-server/unsafe/300x200/smart/43f45345f3f2345432242343223fded
 ```
-
 
 ## การติดตั้งระบบทั้งหมด
 1. Clone sorce code จาก **github**
@@ -80,9 +79,8 @@ This node joined a swarm as a worker.
 
 ```
 
-
 #### 2.2 การแป๊ะ label ให้ทำที่เครื่อง `ubuntu_org1`
-> ชื่อที่กำหนดเป็นการอ้างถึงโดย docker มีเพื่อให้ง่ายต่อการ ตั้งค่าระบบ
+> เราจะกำหนดชื่อ label ให้กับเครื่อง เพื่อใช้ในการอ้างอิงในระบบของ Docker Swarm
 
 |  hostname     | ให้ใช้ชื่อ     | คำอธิบาย |
 |:---:|:---:|:---|
@@ -101,7 +99,7 @@ This node joined a swarm as a worker.
 | docker       | version 13.1 ขึ้นไป       |
 | git   | version ล่าสุด  |
 
-  - **การแป๊ะ label ในส่วนของ hostname `ubuntu_org1` และ hostname `coreosex3` ปรับเปลี่ยนตามชื่อเครื่องจริง นอกจากนั้นก๊อปแป๊ะได้เลย**
+  - การแป๊ะ label ในส่วนของ hostname `ubuntu_org1` และ hostname `coreosex3` **ปรับเปลี่ยนตามชื่อเครื่องจริง** นอกจากนั้นก๊อปแป๊ะได้เลย
 
   ```shell
   `ubuntu_org1`>$ sudo docker node update --label-add mongo.role=frontend `ubuntu_org1`
@@ -118,7 +116,7 @@ This node joined a swarm as a worker.
 `ubuntu_org1`>$ sudo docker stack deploy -c compose-swarm-beestorage.yml beestorage
 ```
 
-**สำหรับการใช้งานหลัง Deploy เสร็จต้องรอ 1 นาที โดย 1 นาทีนี้ระบบจะทำการตรวจสอบ database โดยอัตโนมัติ**
+หลัง Deploy ต้องรอ 1 นาที เพื่อให้ระบบจะทำการตรวจสอบ database โดยอัตโนมัติ
 
 
 ### 4. การใช้งาน BeeStorage
